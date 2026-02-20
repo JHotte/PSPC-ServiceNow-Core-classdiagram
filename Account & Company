@@ -3,6 +3,8 @@
 ```mermaid
 %% TBS   
 classDiagram
+class asdf {
+}
 class TBS {
     }
     class Government of Canada Organization Names and Codes - Concordance Data {
