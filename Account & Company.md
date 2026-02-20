@@ -11,14 +11,14 @@ Open_Canada_Dataset -- Treasury_Board_Secretariat : owner
 class Concordance_Data {
 Name: Government of Canada Organization Names and Codes - Concordance Data
 }
-Concordance_data -- Account
-Concordance_data -- Company
+Concordance_data -- Account : transform map
+Concordance_data -- Company : transform map
 Open_Canada_Dataset -- Concordance_Data : host
 class Organization_information {
 Name: Government of Canada Organization Names and Codes - Organization Information
 }
-Organization_information -- Account
-Organization_information -- Company
+Organization_information -- Account : transform map
+Organization_information -- Company : transform map
 Open_Canada_Dataset -- Organization_information : host
     class Account {
 ServiceNow
