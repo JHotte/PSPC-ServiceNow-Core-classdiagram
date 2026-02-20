@@ -8,7 +8,7 @@ class Treasury_Board_Secretariat {
 class Open_Canada_Dataset {
 }
 Open_Canada_Dataset -- Treasury_Board_Secretariat : owner
-class Concordance_Data {
+class Concordance_data {
 Name: Government of Canada Organization Names and Codes - Concordance Data
 }
 Concordance_data -- Account : transform map
