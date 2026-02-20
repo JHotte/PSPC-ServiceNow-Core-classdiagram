@@ -1,10 +1,7 @@
 
 ## Class Diagram
-
+## TBS
 ```mermaid
 classDiagram
-    class Example {
-        +String id
-        +String name
-        +doSomething()
+    class TBS {
     }
