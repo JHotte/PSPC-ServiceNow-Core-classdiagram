@@ -13,9 +13,13 @@ Name: GoC Org. Names and Codes - Organization Information
 namespace ServiceNow {
     class Account {
 Name: customer_account
+Status: active
+Content: FAA schedule, abbreviations, etc()
 }
     class Company {
 Name: core_company
+Status: active
+Content: Full names, accronym, hierarchy structure()
 }
     class Contact {
 Name: customer_contact
@@ -33,9 +37,9 @@ Name: sn_customerservice_escalation
 Open_Canada_Dataset -- Concordance_data : host
 Open_Canada_Dataset -- Organization_information : host
 Account -- Company : extend
-Account -- Contact
-Account -- User
-Account -- Escalation
-Account -- Theme
-Company -- User
-Company -- Theme
+Account .. Contact : unused
+Account .. User : unused
+Account .. Escalation : unused
+Account .. Theme : unused
+Company .. User : unused
+Company .. Theme : unused
