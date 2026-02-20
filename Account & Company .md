@@ -23,15 +23,19 @@ Content: Full names, accronym, hierarchy structure()
 }
     class Contact {
 Name: customer_contact
+Status: inactive
 }
     class User {
 Name: sys_user
+Status: active
 }
     class Theme {
 Name: sys_ui_theme
+Status: inactive
     }
  class Escalation {
 Name: sn_customerservice_escalation
+Status: inactive
     }
 }
 Open_Canada_Dataset -- Concordance_data : host
