@@ -13,7 +13,7 @@ Name: Government of Canada Organization Names and Codes - Concordance Data
 }
 Concordance_data -- Account : transform map
 Concordance_data -- Company : transform map
-Open_Canada_Dataset -- Concordance_Data : host
+Concordance_Data -- Open_Canada_Dataset : host
 class Organization_information {
 Name: Government of Canada Organization Names and Codes - Organization Information
 }
