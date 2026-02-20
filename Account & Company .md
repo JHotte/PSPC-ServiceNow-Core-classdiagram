@@ -37,9 +37,13 @@ Status: inactive
 Name: sn_customerservice_escalation
 Status: inactive
     }
+class task {
+}
 }
 Open_Canada_Dataset -- Concordance_data : host
 Open_Canada_Dataset -- Organization_information : host
+Concordance_data -- Account : refered
+Organization_information -- Account : refered
 Account -- Company : extend
 Account .. Contact : unused
 Account .. User : unused
@@ -47,3 +51,5 @@ Account .. Escalation : unused
 Account .. Theme : unused
 Company .. User : unused
 Company .. Theme : unused
+Contact -- User : extend
+Escalation -- task : extend
