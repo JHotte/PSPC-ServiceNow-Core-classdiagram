@@ -1,1 +1,10 @@
-# PSPC-ServiceNow-Core-classdiagram
+
+## Class Diagram
+
+```mermaid
+classDiagram
+    class Example {
+        +String id
+        +String name
+        +doSomething()
+    }
