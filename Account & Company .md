@@ -43,7 +43,9 @@ class task {
 Open_Canada_Dataset -- Concordance_data : host
 Open_Canada_Dataset -- Organization_information : host
 Concordance_data -- Account : refered
+Concordance_data -- Company : refered
 Organization_information -- Account : refered
+Organization_information -- Company : refered
 Account -- Company : extend
 Account .. Contact : unused
 Account .. User : unused
