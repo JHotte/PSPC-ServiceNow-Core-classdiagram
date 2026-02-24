@@ -44,3 +44,4 @@ sn_hr_core_profile -- sn_hr_integr_fw_source: reference
 sn_hr_core_profile -- sn_hr_core_job: reference
 sn_hr_core_case_talent_management -- sn_hr_core_case: extend
 sn_hr_core_case_talent_management -- cmn_department: reference
+sn_hr_core_case_talent_management -- cmn_location: reference
