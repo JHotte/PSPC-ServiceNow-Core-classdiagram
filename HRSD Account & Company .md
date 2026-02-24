@@ -11,8 +11,8 @@ Name: GoC Org. Names and Codes - Organization Information
 }
 }
 namespace ServiceNow {
-    class Account {
-Name: customer_account
+    class customer_account {
+Account
 Status: active
 Content: FAA schedule, abbreviations, etc()
 }
@@ -42,15 +42,15 @@ class task {
 }
 Open_Canada_Dataset -- Concordance_data : host
 Open_Canada_Dataset -- Organization_information : host
-Concordance_data -- Account : refered
+Concordance_data -- customer_account : refered
 Concordance_data -- Company : refered
-Organization_information -- Account : refered
+Organization_information -- customer_account : refered
 Organization_information -- Company : refered
-Account -- Company : extend
-Account .. Contact : unused
-Account .. User : unused
-Account .. Escalation : unused
-Account .. Theme : unused
+customer_account -- Company : extend
+customer_account .. Contact : unused
+customer_account .. User : unused
+customer_account .. Escalation : unused
+customer_account .. Theme : unused
 Company .. User : unused
 Company .. Theme : unused
 Contact -- User : extend
