@@ -69,13 +69,6 @@ Change Requests
 }
 }
 
-%% Core CMDB
-namespace CMDB {
-class cmdb_ci {
-Business Applications and Solutions (ITSM catalog)
-}
-class cmdb
-}
 %% Relationships - Core_identity
 sys_user -- sys_user_group : reference
 
@@ -84,8 +77,6 @@ task -- incident : extend
 task -- problem : extend
 task -- change_request : extend
 
-%% Relationship - CMDB
-cmdb -- cmdb_ci : extend
 
 %% Other
 sn_hr_core_case_workforce_admin -- sn_hr_core_case: extend
