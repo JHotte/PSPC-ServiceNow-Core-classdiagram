@@ -27,6 +27,7 @@ class sn_hr_integr_fw_source {
 Integration Source
 }
 }
+%% Core
 namespace Core {
 class sm_order {
 Requester / Assigned workgroup / Priority / Status()
