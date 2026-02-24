@@ -16,42 +16,33 @@ Account
 Status: active
 Content: FAA schedule, abbreviations, etc()
 }
-    class Company {
-Name: core_company
+    class core_company {
+Company
 Status: active
 Content: Full names, accronym, hierarchy structure()
 }
-    class Contact {
-Name: customer_contact
+    class customer_contact {
+Contact
 Status: inactive
 }
-    class User {
-Name: sys_user
+    class sys_user {
+User Profiles
 Status: active
 }
-    class Theme {
-Name: sys_ui_theme
-Status: inactive
-    }
- class Escalation {
-Name: sn_customerservice_escalation
-Status: inactive
-    }
-class task {
+class cmn_location {
+Location
+Status: active
 }
 }
 Open_Canada_Dataset -- Concordance_data : host
 Open_Canada_Dataset -- Organization_information : host
 Concordance_data -- customer_account : refered
-Concordance_data -- Company : refered
+Concordance_data -- core_company : refered
 Organization_information -- customer_account : refered
-Organization_information -- Company : refered
-customer_account -- Company : extend
-customer_account .. Contact : unused
-customer_account .. User : unused
-customer_account .. Escalation : unused
-customer_account .. Theme : unused
-Company .. User : unused
-Company .. Theme : unused
-Contact -- User : extend
-Escalation -- task : extend
+Organization_information -- core_company : refered
+customer_account --> core_company : parent
+customer_account .. customer_contact : "contact"
+customer_account .. sys_user : "contact"
+core_company .. sys_user : "contact"
+customer_contact -- sys_user : "manager"
+cmn_location -- core_company: "company"
