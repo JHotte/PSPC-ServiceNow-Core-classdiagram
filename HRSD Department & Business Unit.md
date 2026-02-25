@@ -29,5 +29,5 @@ cmn_department -- core_company : "Company"
 cmn_department -- sys_user : "Department Head, Primary Contact''
 business_unit -- sys_user : "Business Unit Head"
 business_unit -- core_company : "Company"
-PSPCD -- business_unit
-PSPCD -- cmn_department
+PSPCD -- business_unit : refered
+PSPCD -- cmn_department : refered
