@@ -25,6 +25,11 @@ class sn_hr_core_case_payroll {
 HR Payroll Case
 Pay (HRSD catalog)
 }
+%% category %%
+class sn_hr_core_case_benefits {
+HR Benefits Case
+Benefits(HRSD catalog)
+}
 class sn_hr_core_position {
 Positions
 }
@@ -82,6 +87,7 @@ task -- change_request : extend
 %% Relationhips - HR
 sn_hr_le_case -- sn_hr_core_case: extend
 sn_hr_core_case_payroll -- sn_hr_core_case: extend
+sn_hr_core_case_benefits -- sn_hr_core_case: extend
 
 %% Other
 sn_hr_core_case_workforce_admin -- sn_hr_core_case: extend
