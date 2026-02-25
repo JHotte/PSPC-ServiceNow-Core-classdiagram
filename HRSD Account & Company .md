@@ -39,5 +39,4 @@ Organization_information -- core_company : refered
 customer_account --> core_company : parent
 customer_account -- sys_user : "contact"
 core_company -- sys_user : "contact"
-customer_contact -- sys_user : "manager"
 cmn_location -- core_company: "company"
