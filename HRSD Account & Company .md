@@ -21,11 +21,7 @@ Company
 Status: active
 Content: Full names, accronym, hierarchy structure()
 }
-    class customer_contact {
-Contact
-Status: inactive
-}
-    class sys_user {
+     class sys_user {
 User Profiles
 Status: active
 }
@@ -41,8 +37,7 @@ Concordance_data -- core_company : refered
 Organization_information -- customer_account : refered
 Organization_information -- core_company : refered
 customer_account --> core_company : parent
-customer_account .. customer_contact : "contact"
-customer_account .. sys_user : "contact"
-core_company .. sys_user : "contact"
+customer_account -- sys_user : "contact"
+core_company -- sys_user : "contact"
 customer_contact -- sys_user : "manager"
 cmn_location -- core_company: "company"
