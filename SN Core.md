@@ -1,5 +1,6 @@
 ```mermaid
 classDiagram
+%% TBS
 namespace TBS {
 class Open_Canada_Dataset {
 }
@@ -10,6 +11,16 @@ class Organization_information {
 Name: GoC Org. Names and Codes - Organization Information
 }
 }
+%% PSPC
+namespace PSPC {
+class AD {
+Active Directory
+}
+class PSPCD {
+PSPC Directory
+}
+}
+%% ServiceNow
 namespace ServiceNow {
     class customer_account {
 Account
@@ -40,3 +51,4 @@ customer_account --> core_company : parent
 customer_account -- sys_user : "contact"
 core_company -- sys_user : "contact"
 cmn_location -- core_company: "company"
+AD -- PSPCD
