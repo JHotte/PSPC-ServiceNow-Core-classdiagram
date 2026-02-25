@@ -7,6 +7,7 @@ HR Profiles
 }
 %% category %%
 class sn_hr_core_case_workforce_admin {
+HR Workforce Administration Case
 Conflict of Interest Declaration (HRSD catalog)
 }
 %% category %%
@@ -14,17 +15,18 @@ class sn_hr_core_case_talent_management {
 Departure and Early end of Employment (HRSD catalog)
 Pay, benefits and pension plan
 }
-class sn_hr_core_job {
-Job
+%% category %%
+class sn_hr_le_case {
+HR Lifecycle Events Case
+Staffing and On-boarding of a person(HRSD catalog)
+}
+%% category %%
+class sn_hr_core_case_payroll {
+HR Payroll Case
+Pay (HRSD catalog)
 }
 class sn_hr_core_position {
 Positions
-}
-class sn_hr_core_position_attribute {
-Position Attributes
-}
-class sn_hr_integr_fw_source {
-Integration Source
 }
 }
 %% Core
@@ -41,7 +43,6 @@ Country
 class cmn_department
 }
 }
-
 %% Core_identity group
 namespace Core_identity {
 class sys_user {
@@ -78,6 +79,9 @@ task -- incident : extend
 task -- problem : extend
 task -- change_request : extend
 
+%% Relationhips - HR
+sn_hr_le_case -- sn_hr_core_case: extend
+sn_hr_core_case_payroll -- sn_hr_core_case: extend
 
 %% Other
 sn_hr_core_case_workforce_admin -- sn_hr_core_case: extend
@@ -85,14 +89,10 @@ sn_hr_core_profile -- sys_user: reference
 sn_hr_core_profile -- cmn_location: reference
 sn_hr_core_profile -- sn_hr_core_position: reference
 sn_hr_core_profile -- core_country: reference
-sn_hr_core_profile -- sn_hr_core_position_attribute: reference
-sn_hr_core_profile -- sn_hr_integr_fw_source: reference
-sn_hr_core_profile -- sn_hr_core_job: reference
 sn_hr_core_case_talent_management -- sn_hr_core_case: extend
 sn_hr_core_case_talent_management -- cmn_department: reference
 sn_hr_core_case_talent_management -- cmn_location: reference
 sn_hr_core_case_workforce_admin -- task : reference
-sn_hr_core_case_workforce_admin -- sn_hr_core_case : reference
+sn_hr_core_case_workforce_admin -- sn_hr_core_case : extend
 sm_order -- wm_order : extend
 sm_order -- task : extend
-hr_case -- sm_order : extend
