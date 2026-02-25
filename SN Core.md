@@ -22,7 +22,13 @@ PSPC Directory
 }
 %% ServiceNow
 namespace ServiceNow {
-    class customer_account {
+class business_unit {
+Business Unit
+}
+class cmn_department {
+Department
+}
+class customer_account {
 Account
 Status: active
 Content: FAA schedule, abbreviations, etc()
@@ -52,3 +58,14 @@ customer_account -- sys_user : "contact"
 core_company -- sys_user : "contact"
 cmn_location -- core_company: "company"
 AD -- PSPCD
+cmn_department -- business_unit : "Business Unit"
+cmn_department -- core_company : "Company"
+cmn_department -- sys_user : "Department Head, Primary Contact''
+business_unit -- core_company : "Company"
+PSPCD -- business_unit : refered
+PSPCD -- cmn_department : refered
+
+business_unit -- sys_user : "Business Unit Head"
+
+
+
