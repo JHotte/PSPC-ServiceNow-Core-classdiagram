@@ -12,26 +12,22 @@ Name: PSPC Directory
 }
 }
 namespace ServiceNow {
-class Business Unit {
-Name: business_unit
+class business_unit {
+Business Unit
 }
-class Department {
-Name: cmn_department
+class cmn_department {
+Department
 }
-class Cost Center {
-Name: cmn_cost_center
+class core_company {
+Company
 }
-class HR Integrations Source
-class Integration Source
-class Company
-class User
+class sys_user
 }
 AD -- PSPCD
-Department -- Business Unit
-Department .. Cost Center : unused
-Department .. HR Integrations Source : unused
-Department .. Integration Source : unused
-Department .. Company : unused
-Department .. User : unused
-Business Unit .. User : unused
-Business Unit .. Company : unused
+cmn_department -- business_unit : "Business Unit"
+cmn_department -- core_company : "Company"
+cmn_department -- sys_user : "Department Head, Primary Contact''
+business_unit -- sys_user : "Business Unit Head"
+business_unit -- core_company : "Company"
+PSPCD -- business_unit
+PSPCD -- cmn_department
