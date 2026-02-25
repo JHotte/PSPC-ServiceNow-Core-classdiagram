@@ -5,10 +5,10 @@
 classDiagram
 namespace PSPC {
 class AD {
-Name: Active Directory
+Active Directory
 }
 class PSPCD {
-Name: PSPC Directory
+PSPC Directory
 }
 }
 namespace ServiceNow {
