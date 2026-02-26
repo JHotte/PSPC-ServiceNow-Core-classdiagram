@@ -1,7 +1,6 @@
 
 
 ```mermaid
-%% TBS   
 classDiagram
 class sys_metadata {
 Application File
