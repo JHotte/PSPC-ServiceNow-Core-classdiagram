@@ -27,6 +27,9 @@ class Human Resources Catalog
 class Staffing and On-boarding of a person
 }
 %% ITSM
+namespace ITSM {
+class IT Service Catalog
+}
 %% RPS
 namespace FSM {
 class Real Properties
@@ -42,3 +45,5 @@ Human Resources Catalog <|-- Staffing and On-boarding of a person
 Staffing and On-boarding of a person -- sc_category
 %% FSM Arborescence
 Real Properties -- sc_catalog
+%% ITSM Arborescence
+IT Service Catalog -- sc_catalog
