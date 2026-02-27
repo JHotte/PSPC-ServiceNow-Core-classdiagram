@@ -2,56 +2,48 @@
 
 ```mermaid
 classDiagram
-%% ServiceNow
-namespace ServiceNow {
-class sys_metadata {
-Application File
-}
+
+%% Service Catalog – Clean High-Level (Containers & Items)
+
+direction LR
+
 class sc_catalog {
-Catalog
+  <<table>>
+  +Catalogs (ex: HR, IT)
 }
 class sc_category {
-Category
+  <<table>>
+  +Categories within a catalog
+  +Parent for nesting
 }
+
 class sc_cat_item {
-Catalog Item
-Catalogs/Category/Name()
+  <<table>>
+  +Catalog Item (base)
 }
 class sc_cat_item_producer {
-Record Producer
-}
-class sc_cat_item_category {
-Category + item
-}
-class sc_cat_item_catalog {
-Catalog + items
-}
-class sys_scope {
-Application
-}
-class sys_user {
-User
+  <<extends sc_cat_item>>
+  +Record Producer
 }
 class sc_cat_item_content {
-Content Item
+  <<extends sc_cat_item>>
+  +Content Item
 }
+class sc_cat_item_guide {
+  <<extends sc_cat_item>>
+  +Order Guide
 }
-class Branch
-class BranchCategory
-class FormIntake
-%% Core Arborescence
-sys_metadata <|-- sc_catalog : extend
-sc_catalog <|-- sc_category : extend
-sc_category <|-- sc_cat_item : extend
-sc_cat_item -- sc_cat_item_producer : "Published item"
-sc_cat_item .. sys_metadata
-sc_cat_item_category -- sc_cat_item
-sc_cat_item_category -- sc_category
-sc_cat_item_catalog -- sc_cat_item
-sc_cat_item_catalog -- sc_catalog
-sc_cat_item_content -- sc_cat_item : "Published item"
-sys_scope -- sc_catalog : "Application"
-sc_catalog -- sys_user : "Manager"
-BranchCategory .. sc_category
-Branch .. sc_catalog
-FormIntake .. sc_cat_item_producer
+
+class sc_cat_item_category { <<m2m>> }
+class sc_cat_item_catalog { <<m2m>> }
+
+sc_cat_item <|-- sc_cat_item_producer
+sc_cat_item <|-- sc_cat_item_content
+sc_cat_item <|-- sc_cat_item_guide
+
+sc_catalog "1" o-- "many" sc_category
+sc_category "1" o-- "many" sc_cat_item_category
+sc_cat_item_category "many" o-- "1" sc_cat_item
+
+sc_catalog "1" o-- "many" sc_cat_item_catalog
+sc_cat_item_catalog "many" o-- "1" sc_cat_item
