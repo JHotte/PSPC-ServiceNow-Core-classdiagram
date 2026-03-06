@@ -25,3 +25,4 @@ namespace ACL {
 class test2{
 }
 }
+sn_hr_core_case .. sn_hr_core_conflict_of_interest : extend
