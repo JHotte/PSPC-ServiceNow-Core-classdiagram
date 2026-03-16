@@ -88,31 +88,43 @@ namespace Service_Catalog {
 }
 namespace User_and_Identity {
     class sys_user {
-        +Name: User Profile
+        +✅Name: User Profile
         +Usage: One record per ServiceNow user
         +Source: Source: PSPC Directory via AD
-        +string user_name
-        +string first_name
-        +string last_name
-        +string email
-        +string phone
-        +string preferred_language
-        +reference department
-        +reference company
-        +authenticate()
-        +getRoles()
-        +getManager()
-        +getDepartment()
+        +user_name: string
+        +first_name: string
+        +last_name: string
+        +email: string
+        +phone: string
+        +preferred_language: string
+        +department: reference
+        +company: reference
+        +active: boolean
+        ---
+        +account(action)              %% create | activate | deactivate | lock | unlock | resetPassword
+        +access(action, roleOrGroup)  %% grant | revoke (roles / groups)
+        +profile(action)              %% update | setPreference | setLocale
+        +link(action, externalId)     %% link | unlink (e.g., HR Profile / AD / IAM)
+        +notify(channel)              %% email | sms | teams | mobilePush
     }
     class sn_hr_core_profile {
-        +Name: HR Profile
+        +✅Name: HR Profile
         +Usage: Employment data linked to user
         +Source: MyGCHR Job Data
-        +reference user
-        +string hr_profile_number
-        +string employee_number
-        +reference department
-        +reference company
+        +hr_profile_number: string
+        +employee_number: string
+        +user: reference
+        +department: reference
+        +company: reference
+        +status: string           %% e.g., active | inactive
+        +secure_info: boolean     %% conceptual flag for sensitive data
+        ---
+        +profile(action)                 %% create | update | deactivate | merge
+        +privacy(action)                 %% setConsent | revokeConsent | mask | unmask
+        +link(action, externalId)        %% link | unlink (User/AD/IAM)
+        +access(action, permission)      %% grant | revoke (secure info scopes)
+        +case(action, service)           %% create | view | correlate (launch HR case)
+
     }
 }
 namespace PSPC_Org {
@@ -122,8 +134,15 @@ namespace PSPC_Org {
         +🔗 Syncs from Active Directory
     }
     class Active_Directory {
-        +Name: Active Directory
-        +: Usage: Source of truth for identity
+        +distinguishedName: string
+        +objectGUID: string
+        +sAMAccountName: string
+        +userPrincipalName: string
+        +enabled: boolean
+        +account(action)              %% create | disable | enable | unlock | resetPassword
+        +membership(action, groupDN)  %% add | remove
+        +placement(targetOU)          %% move object to OU
+        +sync(target)                 %% ServiceNow | HRSD | IAM
     }
 }
 namespace MyGCHR {
