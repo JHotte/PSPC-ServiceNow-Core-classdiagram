@@ -2,20 +2,24 @@
 classDiagram
 namespace Core {
     class task {
-        +📋 Base ServiceNow task table
-        +string number
-        +string short_description
-        +string description
-        +integer state
-        +integer priority
-        +datetime opened_at
-        +datetime closed_at
-        +string contact_type
-        +reference opened_by
-        +reference assigned_to
-        +reference assignment_group
-        +list watch_list
-        +string sys_class_name
+        +✅Name: Task
+        +Usage: Base ServiceNow task table
+        +number: string
+        +short_description: string
+        +state: integer
+        +priority: integer
+        +opened_at: datetime
+        +assigned_to: reference
+        +assignment_group: reference
+        ---
+        +lifecycle(action)            %% create | update | close | cancel | reopen
+        +assignment(action, target)   %% assign(user) | assign(group) | unassign
+        +routing(action)              %% evaluateRules | route | reassign
+        +sla(action)                  %% start | pause | stop | recalc
+        +relation(action, record)     %% linkParent | linkChild | unlink
+        +comment(action, payload)     %% addWorkNote | addCustomerNote
+        +notify(channel)              %% email | chat | mobilePush | teams
+        +attachment(action, fileRef)  %% add | remove
     }
 }
 namespace HRSD_Core {
