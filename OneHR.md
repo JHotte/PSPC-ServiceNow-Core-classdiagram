@@ -99,16 +99,16 @@ namespace Service_Catalog {
         +✅name: Record Producer
         +Usage: HR request form definition
         +name: string
-        +table_name: string            %% target table (e.g., sn_hr_core_case)
+        +table_name: string
         +sc_catalogs: reference
         +active: boolean
         +sys_id: string
         ---
-        +producer(action)                 %% enable | disable | retire | publish
-        +variables(action, setOrVar)      %% add | remove | attachSet | detachSet
-        +submit(payload)                  %% create target record from variables
-        +routing(action)                  %% evaluateRules | route | setAssignment
-        +notify(channel)                  %% email | chat | mobile
+        +producer(action)
+        +variables(action, setOrVar)
+        +submit(payload)
+        +routing(action)
+        +notify(channel)
     }
     class sc_cat_item {
     } 
@@ -179,11 +179,11 @@ namespace User_and_Identity {
         +company: reference
         +active: boolean
         ---
-        +account(action)              %% create | activate | deactivate | lock | unlock | resetPassword
-        +access(action, roleOrGroup)  %% grant | revoke (roles / groups)
-        +profile(action)              %% update | setPreference | setLocale
-        +link(action, externalId)     %% link | unlink (e.g., HR Profile / AD / IAM)
-        +notify(channel)              %% email | sms | teams | mobilePush
+        +account(action)
+        +access(action, roleOrGroup)
+        +profile(action)
+        +link(action, externalId)
+        +notify(channel)
     }
     class sn_hr_core_profile {
         +✅Name: HR Profile
@@ -194,15 +194,14 @@ namespace User_and_Identity {
         +user: reference
         +department: reference
         +company: reference
-        +status: string           %% e.g., active | inactive
-        +secure_info: boolean     %% conceptual flag for sensitive data
+        +status: string
+        +secure_info: boolean
         ---
-        +profile(action)                 %% create | update | deactivate | merge
-        +privacy(action)                 %% setConsent | revokeConsent | mask | unmask
-        +link(action, externalId)        %% link | unlink (User/AD/IAM)
-        +access(action, permission)      %% grant | revoke (secure info scopes)
-        +case(action, service)           %% create | view | correlate (launch HR case)
-
+        +profile(action)
+        +privacy(action)
+        +link(action, externalId)
+        +access(action, permission)
+        +case(action, service)
     }
 }
 namespace PSPC_Org {
