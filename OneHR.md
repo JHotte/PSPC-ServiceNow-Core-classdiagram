@@ -11,21 +11,20 @@ namespace Core_task {
         +opened_at: datetime
         +assigned_to: reference
         +assignment_group: reference
-        ---
-        +lifecycle(action)            %% create | update | close | cancel | reopen
-        +assignment(action, target)   %% assign(user) | assign(group) | unassign
-        +routing(action)              %% evaluateRules | route | reassign
-        +sla(action)                  %% start | pause | stop | recalc
-        +relation(action, record)     %% linkParent | linkChild | unlink
-        +comment(action, payload)     %% addWorkNote | addCustomerNote
-        +notify(channel)              %% email | chat | mobilePush | teams
-        +attachment(action, fileRef)  %% add | remove
+        +lifecycle(action)
+        +assignment(action, target)
+        +routing(action)
+        +sla(action)
+        +relation(action, record)
+        +comment(action, payload)
+        +notify(channel)
+        +attachment(action, fileRef)
     }
 }
 namespace HRSD_Core {
     class sn_hr_core_case {
         +✅Name: HR Case
-        +Usage: Every HR request creates one record here
+        +Usage: Main HR Table
         +number: string
         +short_description: string
         +state: integer
@@ -35,14 +34,13 @@ namespace HRSD_Core {
         +opened_for: reference
         +assignment_group: reference
         +assigned_to: reference
-        ---
-        +lifecycle(action)               %% open | update | resolve | close | reopen | cancel
-        +routing(action)                 %% evaluate | autoAssign | reassign | escalate
-        +template(action, templateId)    %% apply | remove
-        +tasking(action, taskModel)      %% generate | sync | closeChildren
-        +sla(action)                     %% start | pause | stop | recalc
-        +communication(action, channel)  %% notify | requestInfo | acknowledge
-        +security(action, scope)         %% restrict | relax (COE/ACL/visibility)
+        +lifecycle(action)
+        +routing(action)
+        +template(action, templateId)
+        +tasking(action, taskModel)
+        +sla(action)
+        +communication(action, channel)
+        +security(action, scope)
 
     }
     class sn_hr_core_service {
@@ -266,20 +264,41 @@ namespace Open_Dataset {
 %% ══════════════════════════════
 namespace Core_Organizational {
     class cmn_department {
-        +Name: Department
-        +Usage: Organizational unit reference
+        +✅Name: Department
+        +Usage: List of all sectors (level 2), directorates (level 3) and subsequent 
         +Source: TBD
-        +string name
-        +string id
-        +reference parent
-        +reference company
+        +name: string                         %% department name (name_value)
+        +id: string                           %% department ID/code (id_value / code)
+        +description: string                  %% long description (description_value)
+        +company: reference(core_company)     %% associated company (company_value)
+        +sys_id: string                       %% unique identifier (sys_id_value)
+        ---
+        +hierarchy(structureOp)               %% assignParent | getAncestors | getDescendants
+        +governance(roleOp)                   %% setDeptHead | setPrimaryContact | assignCompany
+        +finance(mappingOp)                   %% linkCostCenter | updateCostCenter
+        +directory(queryOp)                   %% lookupByCode | lookupByName | listSubdepartments
     }
     class core_company {
-        +Name: Company
+        +✅Name: Company
         +Usage: Legal entity reference
         +string name
         +string stock_symbol
     }
+    class business_unit {
+}
+    class position {
+}
+    class core_company {
+}
+    class customer_account {
+}
+}
+%% ══════════════════════════════
+%% FINANCIAL
+%% ══════════════════════════════
+namespace Core_Organizational {
+    class cmn_cost_center {
+}
 }
 %% ══════════════════════════════
 %% SURVEY ECOSYSTEM
