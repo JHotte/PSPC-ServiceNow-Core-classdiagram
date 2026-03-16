@@ -262,7 +262,8 @@ namespace Core_Organizational {
         +Name: Customer Account
         +Usage: List of identifiers required for authentication, customer classification, and integrations - GC OrgID, Account Type, FAA Schedule, RG Codes
         +name: string
-        
+        +onboarding(registrationOp)
+        +relationship(hierarchyOp)        
 }
     class cmn_department {
         +✅Name: Department
