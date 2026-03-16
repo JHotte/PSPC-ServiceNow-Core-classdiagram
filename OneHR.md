@@ -79,14 +79,13 @@ namespace Service_Catalog {
     class sc_catalog {
         +✅name: Service Catalog
         +usage: Lists catalog definition (HR, RP, IT, etc.)
-        +Title: string                      %% descriptive catalog name
-        +Active: boolean                    %% visible to end users when true
-        +CatalogHomePage: string            %% content page URL for “Catalog Home” navigation 
-        +sys_id: string                     %% unique identifier (standard on all SN tables)
-         ---
-        +Catalog(sys_id)                    %% instantiate Catalog object using sys_id
-        +canView(mobile, userId?)           %% evaluate if user can view catalog (mobile/desktop) 
-        +getAvailableCatalog()              %% fetch earliest available active catalog for user
+        +Title: string
+        +Active: boolean
+        +CatalogHomePage: string
+        +sys_id: string
+        +Catalog(sys_id)
+        +canView(mobile, userId?)
+        +getAvailableCatalog()
  }
     class sc_category {
         +✅name: Catalog Category
