@@ -265,16 +265,15 @@ namespace Core_Organizational {
         +✅Name: Department
         +Usage: List of all sectors (level 2), directorates (level 3) and subsequent 
         +Source: TBD
-        +name: string                         %% department name (name_value)
-        +id: string                           %% department ID/code (id_value / code)
-        +description: string                  %% long description (description_value)
-        +company: reference(core_company)     %% associated company (company_value)
-        +sys_id: string                       %% unique identifier (sys_id_value)
-        ---
-        +hierarchy(structureOp)               %% assignParent | getAncestors | getDescendants
-        +governance(roleOp)                   %% setDeptHead | setPrimaryContact | assignCompany
-        +finance(mappingOp)                   %% linkCostCenter | updateCostCenter
-        +directory(queryOp)                   %% lookupByCode | lookupByName | listSubdepartments
+        +name: string
+        +id: string
+        +description: string
+        +company: reference(core_company)
+        +sys_id: string
+        +hierarchy(structureOp)
+        +governance(roleOp)
+        +finance(mappingOp)
+        +directory(queryOp)
     }
     class core_company {
         +✅Name: Company
