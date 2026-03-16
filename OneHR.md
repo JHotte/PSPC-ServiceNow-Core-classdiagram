@@ -258,9 +258,15 @@ namespace Open_Dataset {
 %% ORGANIZATIONAL
 %% ══════════════════════════════
 namespace Core_Organizational {
+    class customer_account {
+        +Name: Customer Account
+        +Usage: List of identifiers required for authentication, customer classification, and integrations - GC OrgID, Account Type, FAA Schedule, RG Codes
+        +name: string
+        
+}
     class cmn_department {
         +✅Name: Department
-        +Usage: List of all sectors (level 2), directorates (level 3) and subsequent 
+        +Usage: List of all sectors (level 2), directorates (level 3) and childs of PSPC
         +Source: TBD
         +name: string
         +id: string
@@ -273,12 +279,20 @@ namespace Core_Organizational {
         +directory(queryOp)
     }
     class core_company {
-        +✅Name: Company
-        +Usage: Legal entity reference
+        +Name: Company
+        +Usage: List of all GoC departments and agencies
         +string name
-        +string stock_symbol
+        +parent: reference
+        +identity(roleOp)
+        +relationship(hierarchyOp)
     }
     class business_unit {
+    +✅Name: Business Unit
+    +Usage: List of all branches (level 1) and regions of PSPC
+    +name: string
+    +company: reference
+    +parent: reference
+    +hierarchy(structureOp)
 }
     class position {
 }
@@ -310,11 +324,10 @@ namespace Core_Surveys {
         +integer percent_answered
         +string channel
         +string related_id_1
-        ---
-        +assessmentLifecycle(state)          %% launch | close | expire
-        +notification(channelType)           %% email | sms | push
-        +progressTracking(metric)            %% computeCompletion | updateProgress
-        +expirationCheck(timeRule)           %% expireIfOverdue
+        +assessmentLifecycle(state)
+        +notification(channelType)
+        +progressTracking(metric)
+        +expirationCheck(timeRule)
     }
     class asmt_assessment_instance_question {
         +✅Name: Survey Response
@@ -325,9 +338,8 @@ namespace Core_Surveys {
         +string string_value
         +string category
         +boolean is_hidden
-        ---
-        +responseHandling(responseAction)     %% capture | validate | store
-        +visibilityControl(visibilityRule)    %% hide | show | evaluateLogic
+        +responseHandling(responseAction)
+        +visibilityControl(visibilityRule)
     }
     class asmt_metric_result {
         +✅Name: Survey Result
@@ -341,8 +353,7 @@ namespace Core_Surveys {
         +string string_value
         +boolean passed
         +reference user
-        ---
-        +metricCalculation(metricOp)          %% calculate | normalize | scale | computeNPS | passFail
+        +metricCalculation(metricOp)
     }
     class asmt_condition {
         +✅Name: Survey Trigger
@@ -353,8 +364,7 @@ namespace Core_Surveys {
         +string condition
         +boolean trigger_random
         +integer percent_random
-        ---
-        +triggerEvaluation(triggerOp)         %% evaluate | matchConditions | createInstance | selectRandomSample
+        +triggerEvaluation(triggerOp)
     }
 }
 %% ══════════════════════════════
@@ -364,6 +374,7 @@ namespace Core_Surveys {
     task <|-- sn_hr_core_case : extends
     task <|-- sc_req_item : extends
     sc_cat_item <|-- sc_cat_item_producer: extends
+    core_company <|-- customer_account: extends
     sys_metadata <|-- sc_catalog: extends
     sys_metadata <|-- sc_category: extends
 
@@ -386,6 +397,9 @@ namespace Core_Surveys {
     sn_hr_core_profile --> cmn_department : department
     cmn_department --> core_company : company
 
+    %% ── User & Identity ──
+    cmn_department --> business_unit: business unit
+    
     %% ── MyGCHR feeds ──
     MyGCHR_Job_Data --> sn_hr_core_profile : job data
     MyGCHR_Job_Data_Terminated --> sn_hr_core_profile : terminated job data
