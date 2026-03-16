@@ -259,7 +259,7 @@ namespace Open_Dataset {
 %% ══════════════════════════════
 namespace Core_Organizational {
     class customer_account {
-        +Name: Customer Account
+        +✅Name: Customer Account
         +Usage: List of identifiers required for authentication, customer classification, and integrations - GC OrgID, Account Type, FAA Schedule, RG Codes
         +name: string
         +onboarding(registrationOp)
@@ -280,7 +280,7 @@ namespace Core_Organizational {
         +directory(queryOp)
     }
     class core_company {
-        +Name: Company
+        +✅Name: Company
         +Usage: List of all GoC departments and agencies
         +string name
         +parent: reference
@@ -397,6 +397,7 @@ namespace Core_Surveys {
     sys_user --> core_company : company
     sn_hr_core_profile --> cmn_department : department
     cmn_department --> core_company : company
+    customer_account --> core_company : parent
 
     %% ── User & Identity ──
     cmn_department --> business_unit: business unit
