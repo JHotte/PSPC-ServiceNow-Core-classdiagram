@@ -99,7 +99,6 @@ namespace Service_Catalog {
         +sys_id: string                      %% unique identifier (standard on all SN tables)
         ---
 }
-
     class sc_cat_item_producer {
         +✅name: Record Producer
         +Usage: HR request form definition
@@ -115,6 +114,10 @@ namespace Service_Catalog {
         +routing(action)                  %% evaluateRules | route | setAssignment
         +notify(channel)                  %% email | chat | mobile
     }
+    class sc_cat_item {
+    } 
+
+%% VALIDATION NEEDED BELOW %%
 
     class sc_req_item {
         +✅Name: Request Item
@@ -283,7 +286,7 @@ namespace Core_Organizational {
 %% ══════════════════════════════
 namespace Core_Surveys {
     class asmt_assessment_instance {
-        +Name: Survey Instance
+        +✅Name: Survey Instance
         +Usage: One record per survey sent to a user
         +string number
         +reference metric_type
@@ -294,15 +297,14 @@ namespace Core_Surveys {
         +integer percent_answered
         +string channel
         +string related_id_1
-        +launchAssessment()
-        +sendNotification()
-        +trackProgress()
-        +closeAssessment()
-        +calculateCompletionPercent()
-        +expireIfOverdue()
+        ---
+        +assessmentLifecycle(state)          %% launch | close | expire
+        +notification(channelType)           %% email | sms | push
+        +progressTracking(metric)            %% computeCompletion | updateProgress
+        +expirationCheck(timeRule)           %% expireIfOverdue
     }
     class asmt_assessment_instance_question {
-        +Name: Survey Response
+        +✅Name: Survey Response
         +Usage: Raw answer per question per instance
         +reference instance
         +reference metric
@@ -310,13 +312,12 @@ namespace Core_Surveys {
         +string string_value
         +string category
         +boolean is_hidden
-        +captureResponse()
-        +validateAnswer()
-        +hideOrShowBasedOnLogic()
-        +storeStringValue()
+        ---
+        +responseHandling(responseAction)     %% capture | validate | store
+        +visibilityControl(visibilityRule)    %% hide | show | evaluateLogic
     }
     class asmt_metric_result {
-        +Name: Survey Result
+        +✅Name: Survey Result
         +Usage: Calculated score - primary analytics table
         +reference instance
         +reference metric
@@ -327,14 +328,11 @@ namespace Core_Surveys {
         +string string_value
         +boolean passed
         +reference user
-        +calculateMetricValue()
-        +normalizeScore()
-        +applyScalingRules()
-        +computeNPS()
-        +recordPassFail()
+        ---
+        +metricCalculation(metricOp)          %% calculate | normalize | scale | computeNPS | passFail
     }
     class asmt_condition {
-        +Name: Survey Trigger
+        +✅Name: Survey Trigger
         +Usage: Controls when surveys fire
         +boolean active
         +reference assessment
@@ -342,10 +340,8 @@ namespace Core_Surveys {
         +string condition
         +boolean trigger_random
         +integer percent_random
-        +evaluateTrigger()
-        +matchRecordConditions()
-        +startAssessmentInstance()
-        +selectRandomSample()
+        ---
+        +triggerEvaluation(triggerOp)         %% evaluate | matchConditions | createInstance | selectRandomSample
     }
 }
 %% ══════════════════════════════
@@ -354,6 +350,7 @@ namespace Core_Surveys {
     %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
     task <|-- sc_req_item : extends
+    sc_cat_item <|-- sc_cat_item_producer: extends
     sys_metadata <|-- sc_catalog: extends
     sys_metadata <|-- sc_category: extends
 
