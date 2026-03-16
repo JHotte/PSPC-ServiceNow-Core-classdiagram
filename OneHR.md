@@ -90,11 +90,10 @@ namespace Service_Catalog {
     class sc_category {
         +✅name: Catalog Category
         +usage: List catalog categories (Hire a person, Inclusivity, etc.)
-        +Title: string                       %% category name displayed to users
-        +Active: boolean                     %% inactive categories hide entire subtrees from end users
-        +Parent: reference(sc_category)      %% enables category hierarchy (nested categories)
-        +sys_id: string                      %% unique identifier (standard on all SN tables)
-        ---
+        +Title: string
+        +Active: boolean
+        +Parent: reference(sc_category)
+        +sys_id: string
 }
     class sc_cat_item_producer {
         +✅name: Record Producer
