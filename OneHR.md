@@ -50,6 +50,8 @@ namespace HRSD_Core {
         +string description
         +reference hr_service_type
     }
+    class sn_hr_core_position {
+}
 }
 %% ══════════════════════════════
 %% COI
@@ -294,8 +296,6 @@ namespace Core_Organizational {
     +company: reference
     +parent: reference
     +hierarchy(structureOp)
-}
-    class position {
 }
     class core_company {
 }
