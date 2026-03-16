@@ -24,11 +24,26 @@ namespace Core {
 }
 namespace HRSD_Core {
     class sn_hr_core_case {
-        +📋 HR Case
-        +🎯 Every HR request creates one record here
-        +reference hr_service
-        +reference subject_person
-        +reference opened_for
+        +✅Name: HR Case
+        +Goal: Every HR request creates one record here
+        +number: string
+        +short_description: string
+        +state: integer
+        +priority: integer
+        +hr_service: reference
+        +subject_person: reference
+        +opened_for: reference
+        +assignment_group: reference
+        +assigned_to: reference
+        ---
+        +lifecycle(action)               %% open | update | resolve | close | reopen | cancel
+        +routing(action)                 %% evaluate | autoAssign | reassign | escalate
+        +template(action, templateId)    %% apply | remove
+        +tasking(action, taskModel)      %% generate | sync | closeChildren
+        +sla(action)                     %% start | pause | stop | recalc
+        +communication(action, channel)  %% notify | requestInfo | acknowledge
+        +security(action, scope)         %% restrict | relax (COE/ACL/visibility)
+
     }
     class sn_hr_core_service {
         +📋 HR Service
