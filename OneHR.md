@@ -1,10 +1,8 @@
 ```mermaid
 classDiagram
 namespace Core {
-    %% ══════════════════════════════
-    %% CORE SERVICENOW BASE
-    %% ══════════════════════════════
     class task {
+        +📋 Base ServiceNow task table
         +string number
         +string short_description
         +string description
@@ -19,43 +17,54 @@ namespace Core {
         +list watch_list
         +string sys_class_name
     }
-    }
-namespace HRSD {
-    %% ══════════════════════════════
-    %% HRSD CORE
-    %% ══════════════════════════════
+}
+namespace HRSD_Core {
     class sn_hr_core_case {
+        +📋 HR Case
+        +🎯 Every HR request creates one record here
         +reference hr_service
         +reference subject_person
         +reference opened_for
-        +string u_subject_person
     }
-
     class sn_hr_core_service {
+        +📋 HR Service
+        +🎯 Service catalogue taxonomy
         +string name
         +string description
         +reference hr_service_type
     }
 }
-namespace Core {
-    %% ══════════════════════════════
-    %% SERVICE CATALOG
-    %% ══════════════════════════════
+namespace HRSD_Specific {
+    class sn_hr_core_conflict_of_interest {
+        +📋 Conflict of Interest
+    }
+    class sn_hr_core_declaration {
+        +📋 COI Declaration
+    }
+    class sn_hr_core_coi_question_answers {
+        +📋 COI Question Answers
+    }
+}
+namespace Service_Catalog {
     class sc_cat_item_producer {
+        +📋 Record Producer
+        +🎯 HR request form definition
         +string name
         +string table_name
         +reference sc_catalogs
         +boolean active
     }
-
     class sc_req_item {
+        +📋 Request Item
+        +🎯 One record per submitted request
         +string number
         +reference cat_item
         +reference request
         +reference opened_for
     }
-
     class item_option_new {
+        +📋 Variable
+        +🎯 Individual field on a form
         +string name
         +string question_text
         +string type
@@ -64,34 +73,41 @@ namespace Core {
         +reference cat_item
         +reference variable_set
     }
-
     class item_option_new_set {
+        +📋 Variable Set
+        +🎯 Reusable group of fields
         +string name
         +string sys_id
     }
-
     class io_set_item {
+        +📋 Variable Set Link
+        +🎯 Links variable sets to producers
         +reference sc_cat_item
         +reference variable_set
     }
 }
-namespace User_and_identity {
-    %% ══════════════════════════════
-    %% USER & IDENTITY
-    %% ══════════════════════════════
+namespace User_and_Identity {
     class sys_user {
+        +Name: User Profile
+        +Usage: One record per ServiceNow user
+        +Source: Source: PSPC Directory via AD
         +string user_name
         +string first_name
-+string last_name
+        +string last_name
         +string email
         +string phone
         +string preferred_language
         +reference department
         +reference company
+        +authenticate()
+        +getRoles()
+        +getManager()
+        +getDepartment()
     }
-
     class sn_hr_core_profile {
-        User Identity
+        +Name: HR Profile
+        +Usage: Employment data linked to user
+        +Source: MyGCHR Job Data
         +reference user
         +string hr_profile_number
         +string employee_number
@@ -100,45 +116,77 @@ namespace User_and_identity {
     }
 }
 namespace PSPC_Org {
-    %% ══════════════════════════════
-    %% PSPC
-    %% ══════════════════════════════
-   class MyGCHR {
+    class PSPC_Directory {
+        +📋 PSPC Directory
+        +🎯 Employee-maintained profile data
+        +🔗 Syncs from Active Directory
+    }
+    class Active_Directory {
+        +Name: Active Directory
+        +: Usage: Source of truth for identity
+    }
 }
-   class PSPCD {
+namespace MyGCHR {
+    class MyGCHR_Location {
+        +📋 Location Data
+        +🎯 Work location reference data
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data {
+        +📋 Job Data - Active
+        +🎯 Active employee job records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data_Terminated {
+        +📋 Job Data - Terminated
+        +🎯 Terminated employee records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Position {
+        +📋 Position Data
+        +🎯 Position definitions
+        +🔗 External system - GC
+    }
 }
-   class AD {
+namespace Open_Dataset {
+    class Concordance_data {
+        +📋 Concordance Data
+        +🎯 GC-wide org concordance
+        +🔗 Source: TBS Open Data
+    }
+    class Organization_information {
+        +📋 Organization Information
+        +🎯 GC-wide org reference data
+        +🔗 Source: TBS Open Data
+    }
 }
-}
-namespace TBS {
-    %% ══════════════════════════════
-    %% TBS
-    %% ══════════════════════════════
-   class Open_Dataset {
-}
-}
-
-namespace Organizational {
-    %% ══════════════════════════════
-    %% ORGANIZATIONAL
-    %% ══════════════════════════════
+%% ══════════════════════════════
+%% ORGANIZATIONAL
+%% ══════════════════════════════
+namespace Core_Organizational {
     class cmn_department {
+        +Name: Department
+        +Usage: Organizational unit reference
+        +Source: TBD
         +string name
         +string id
         +reference parent
         +reference company
     }
-
     class core_company {
+        +Name: Company
+        +Usage: Legal entity reference
         +string name
         +string stock_symbol
     }
 }
-namespace Surveys {
-    %% ══════════════════════════════
-    %% SURVEY ECOSYSTEM
-    %% ══════════════════════════════
+%% ══════════════════════════════
+%% SURVEY ECOSYSTEM
+%% ══════════════════════════════
+namespace Core_Surveys {
     class asmt_assessment_instance {
+        +Name: Survey Instance
+        +Usage: One record per survey sent to a user
         +string number
         +reference metric_type
         +reference user
@@ -148,18 +196,30 @@ namespace Surveys {
         +integer percent_answered
         +string channel
         +string related_id_1
+        +launchAssessment()
+        +sendNotification()
+        +trackProgress()
+        +closeAssessment()
+        +calculateCompletionPercent()
+        +expireIfOverdue()
     }
-
     class asmt_assessment_instance_question {
+        +Name: Survey Response
+        +Usage: Raw answer per question per instance
         +reference instance
         +reference metric
         +string value
         +string string_value
         +string category
         +boolean is_hidden
+        +captureResponse()
+        +validateAnswer()
+        +hideOrShowBasedOnLogic()
+        +storeStringValue()
     }
-
     class asmt_metric_result {
+        +Name: Survey Result
+        +Usage: Calculated score - primary analytics table
         +reference instance
         +reference metric
         +decimal actual_value
@@ -169,45 +229,65 @@ namespace Surveys {
         +string string_value
         +boolean passed
         +reference user
+        +calculateMetricValue()
+        +normalizeScore()
+        +applyScalingRules()
+        +computeNPS()
+        +recordPassFail()
     }
-
     class asmt_condition {
+        +Name: Survey Trigger
+        +Usage: Controls when surveys fire
         +boolean active
         +reference assessment
         +string table
         +string condition
         +boolean trigger_random
         +integer percent_random
+        +evaluateTrigger()
+        +matchRecordConditions()
+        +startAssessmentInstance()
+        +selectRandomSample()
     }
 }
-    %% ══════════════════════════════
-    %% RELATIONSHIPS
-    %% ══════════════════════════════
-
-    %% Inheritance
+%% ══════════════════════════════
+%% RELATIONSHIPS
+%% ══════════════════════════════
+    %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
     task <|-- sc_req_item : extends
 
-    %% HR Case relationships
+    %% ── HR Case ──
     sn_hr_core_case --> sn_hr_core_service : hr_service
     sn_hr_core_case --> sys_user : opened_by / opened_for
     sn_hr_core_case --> sn_hr_core_profile : subject_person
 
-    %% Catalog structure
+    %% ── Catalog ──
     sc_cat_item_producer --> item_option_new : direct variables
     sc_cat_item_producer --> io_set_item : variable sets
     io_set_item --> item_option_new_set : variable_set
     item_option_new --> item_option_new_set : variable_set
 
-    %% User & identity
+    %% ── User & Identity ──
     sn_hr_core_profile --> sys_user : user
     sys_user --> cmn_department : department
     sys_user --> core_company : company
     sn_hr_core_profile --> cmn_department : department
     cmn_department --> core_company : company
 
-    %% Survey
+    %% ── MyGCHR feeds ──
+    MyGCHR_Job_Data --> sn_hr_core_profile : job data
+    MyGCHR_Job_Data_Terminated --> sn_hr_core_profile : terminated job data
+    MyGCHR_Location --> cmn_department : location data
+    MyGCHR_Position --> sn_hr_core_profile : position data
+
+    %% ── PSPC Directory feeds ──
+    Active_Directory --> PSPC_Directory : syncs to
+    PSPC_Directory --> sys_user : provisions
+
+    %% ── Survey ──
     asmt_condition --> asmt_assessment_instance : triggers
     asmt_assessment_instance --> sys_user : user
     asmt_assessment_instance --> asmt_assessment_instance_question : instance
     asmt_assessment_instance --> asmt_metric_result : instance
+    
