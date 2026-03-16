@@ -267,7 +267,7 @@ namespace Core_Organizational {
 }
     class cmn_department {
         +✅Name: Department
-        +Usage: List of all sectors (level 2), directorates (level 3) and childs of PSPC
+        +Usage: List of all sectors L2, directorates L3 and childs of PSPC
         +Source: TBD
         +name: string
         +id: string
@@ -289,7 +289,7 @@ namespace Core_Organizational {
     }
     class business_unit {
     +✅Name: Business Unit
-    +Usage: List of all branches (level 1) and regions of PSPC
+    +Usage: List of all branches L1 and regions of PSPC
     +name: string
     +company: reference
     +parent: reference
