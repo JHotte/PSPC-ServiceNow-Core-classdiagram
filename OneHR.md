@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-
+namespace Core {
     %% ══════════════════════════════
     %% CORE SERVICENOW BASE
     %% ══════════════════════════════
@@ -18,6 +18,7 @@ classDiagram
         +reference assignment_group
         +list watch_list
         +string sys_class_name
+    }
     }
 
     %% ══════════════════════════════
@@ -72,7 +73,7 @@ classDiagram
         +reference sc_cat_item
         +reference variable_set
     }
-
+namespace User_and_identity {
     %% ══════════════════════════════
     %% USER & IDENTITY
     %% ══════════════════════════════
@@ -94,7 +95,8 @@ classDiagram
         +reference department
         +reference company
     }
-
+}
+namespace Organizational {
     %% ══════════════════════════════
     %% ORGANIZATIONAL
     %% ══════════════════════════════
@@ -109,7 +111,8 @@ classDiagram
         +string name
         +string stock_symbol
     }
-
+}
+namespace Surveys {
     %% ══════════════════════════════
     %% SURVEY ECOSYSTEM
     %% ══════════════════════════════
@@ -154,7 +157,7 @@ classDiagram
         +boolean trigger_random
         +integer percent_random
     }
-
+}
     %% ══════════════════════════════
     %% RELATIONSHIPS
     %% ══════════════════════════════
