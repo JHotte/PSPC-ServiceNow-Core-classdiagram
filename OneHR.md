@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-namespace Core {
+namespace Core_task {
     class task {
         +✅Name: Task
         +Usage: Base ServiceNow task table
@@ -25,7 +25,7 @@ namespace Core {
 namespace HRSD_Core {
     class sn_hr_core_case {
         +✅Name: HR Case
-        +Goal: Every HR request creates one record here
+        +Usage: Every HR request creates one record here
         +number: string
         +short_description: string
         +state: integer
@@ -53,7 +53,10 @@ namespace HRSD_Core {
         +reference hr_service_type
     }
 }
-namespace HRSD_Specific {
+%% ══════════════════════════════
+%% COI
+%% ══════════════════════════════
+namespace COI_Specific {
     class sn_hr_core_conflict_of_interest {
         +📋 Conflict of Interest
     }
@@ -64,23 +67,77 @@ namespace HRSD_Specific {
         +📋 COI Question Answers
     }
 }
+%% ══════════════════════════════
+%% APPLICATION FILE
+%% ══════════════════════════════
+namespace app_file {
+class sys_metadata {
+}
+}
+%% ══════════════════════════════
+%% CORE SERVICE CATALOG
+%% ══════════════════════════════
 namespace Service_Catalog {
+    class sc_catalog {
+        +✅name: Service Catalog
+        +usage: Lists catalog definition (HR, RP, IT, etc.)
+        +Title: string                      %% descriptive catalog name
+        +Active: boolean                    %% visible to end users when true
+        +CatalogHomePage: string            %% content page URL for “Catalog Home” navigation 
+        +sys_id: string                     %% unique identifier (standard on all SN tables)
+         ---
+        +Catalog(sys_id)                    %% instantiate Catalog object using sys_id
+        +canView(mobile, userId?)           %% evaluate if user can view catalog (mobile/desktop) 
+        +getAvailableCatalog()              %% fetch earliest available active catalog for user
+ }
+    class sc_category {
+        +✅name: Catalog Category
+        +usage: List catalog categories (Hire a person, Inclusivity, etc.)
+        +Title: string                       %% category name displayed to users
+        +Active: boolean                     %% inactive categories hide entire subtrees from end users
+        +Parent: reference(sc_category)      %% enables category hierarchy (nested categories)
+        +sys_id: string                      %% unique identifier (standard on all SN tables)
+        ---
+}
+
     class sc_cat_item_producer {
-        +📋 Record Producer
-        +🎯 HR request form definition
-        +string name
-        +string table_name
-        +reference sc_catalogs
-        +boolean active
+        +✅name: Record Producer
+        +Usage: HR request form definition
+        +name: string
+        +table_name: string            %% target table (e.g., sn_hr_core_case)
+        +sc_catalogs: reference
+        +active: boolean
+        +sys_id: string
+        ---
+        +producer(action)                 %% enable | disable | retire | publish
+        +variables(action, setOrVar)      %% add | remove | attachSet | detachSet
+        +submit(payload)                  %% create target record from variables
+        +routing(action)                  %% evaluateRules | route | setAssignment
+        +notify(channel)                  %% email | chat | mobile
     }
+
     class sc_req_item {
-        +📋 Request Item
-        +🎯 One record per submitted request
-        +string number
-        +reference cat_item
-        +reference request
-        +reference opened_for
+        +✅Name: Request Item
+        +Usage: One record per submitted request
+        +number: string
+        +cat_item: reference        %% originating catalog item
+        +request: reference         %% parent REQ (sc_request)
+        +opened_for: reference
+        +state: integer
+        +stage: string
+        +assignment_group: reference
+        +assigned_to: reference
+        ---
+        +lifecycle(action)               %% submit | update | complete | close | cancel | reopen
+        +fulfillment(action)             %% generateTasks | sync | closeChildren
+        +assignment(action, target)      %% assign(user|group) | unassign
+        +routing(action)                 %% evaluateRules | route | escalate
+        +approvals(action, target)       %% request | approve | reject | reassign
+        +sla(action)                     %% start | pause | stop | recalc
+        +communication(action, channel)  %% notify | requestInfo | acknowledge
+        +attachment(action, fileRef)     %% add | remove
     }
+
     class item_option_new {
         +📋 Variable
         +🎯 Individual field on a form
@@ -105,6 +162,9 @@ namespace Service_Catalog {
         +reference variable_set
     }
 }
+%% ══════════════════════════════
+%% CORE USER AND IDENTITY
+%% ══════════════════════════════
 namespace User_and_Identity {
     class sys_user {
         +✅Name: User Profile
@@ -294,6 +354,8 @@ namespace Core_Surveys {
     %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
     task <|-- sc_req_item : extends
+    sys_metadata <|-- sc_catalog: extends
+    sys_metadata <|-- sc_category: extends
 
     %% ── HR Case ──
     sn_hr_core_case --> sn_hr_core_service : hr_service
@@ -301,6 +363,7 @@ namespace Core_Surveys {
     sn_hr_core_case --> sn_hr_core_profile : subject_person
 
     %% ── Catalog ──
+    sc_catalog --> sc_category: catalog
     sc_cat_item_producer --> item_option_new : direct variables
     sc_cat_item_producer --> io_set_item : variable sets
     io_set_item --> item_option_new_set : variable_set
