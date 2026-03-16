@@ -20,7 +20,7 @@ namespace Core {
         +string sys_class_name
     }
     }
-
+namespace HRSD {
     %% ══════════════════════════════
     %% HRSD CORE
     %% ══════════════════════════════
@@ -36,7 +36,8 @@ namespace Core {
         +string description
         +reference hr_service_type
     }
-
+}
+namespace Core {
     %% ══════════════════════════════
     %% SERVICE CATALOG
     %% ══════════════════════════════
@@ -73,6 +74,7 @@ namespace Core {
         +reference sc_cat_item
         +reference variable_set
     }
+}
 namespace User_and_identity {
     %% ══════════════════════════════
     %% USER & IDENTITY
@@ -89,6 +91,7 @@ namespace User_and_identity {
     }
 
     class sn_hr_core_profile {
+        User Identity
         +reference user
         +string hr_profile_number
         +string employee_number
@@ -96,6 +99,25 @@ namespace User_and_identity {
         +reference company
     }
 }
+namespace PSPC_Org {
+    %% ══════════════════════════════
+    %% PSPC
+    %% ══════════════════════════════
+   class MyGCHR {
+}
+   class PSPCD {
+}
+   class AD {
+}
+}
+namespace TBS {
+    %% ══════════════════════════════
+    %% TBS
+    %% ══════════════════════════════
+   class Open_Dataset {
+}
+}
+
 namespace Organizational {
     %% ══════════════════════════════
     %% ORGANIZATIONAL
