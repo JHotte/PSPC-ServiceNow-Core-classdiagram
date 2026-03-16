@@ -178,7 +178,6 @@ namespace User_and_Identity {
         +department: reference
         +company: reference
         +active: boolean
-        ---
         +account(action)
         +access(action, roleOrGroup)
         +profile(action)
@@ -196,7 +195,6 @@ namespace User_and_Identity {
         +company: reference
         +status: string
         +secure_info: boolean
-        ---
         +profile(action)
         +privacy(action)
         +link(action, externalId)
@@ -216,10 +214,10 @@ namespace PSPC_Org {
         +sAMAccountName: string
         +userPrincipalName: string
         +enabled: boolean
-        +account(action)              %% create | disable | enable | unlock | resetPassword
-        +membership(action, groupDN)  %% add | remove
-        +placement(targetOU)          %% move object to OU
-        +sync(target)                 %% ServiceNow | HRSD | IAM
+        +account(action)
+        +membership(action, groupDN)
+        +placement(targetOU)
+        +sync(target)
     }
 }
 namespace MyGCHR {
