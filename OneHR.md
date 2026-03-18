@@ -48,6 +48,12 @@ class conflict_of_interest_v1_rp {
         +Parent Category: Inclusivity, safety and mental health
         +Catalog: Human Resources Catalog
  }
+class conflict_of_interest_v2_rp {
+        +Record Producer: Conflict of Interest Declaration V2
+        +Category: Code of conduct and declaration of conflict of interest
+        +Parent Category: Inclusivity, safety and mental health
+        +Catalog: Human Resources Catalog
+ }
     class sn_hr_core_service {
         +📋 HR Service
         +🎯 Service catalogue taxonomy
@@ -386,7 +392,8 @@ namespace Core_Surveys {
 
     %% ── HR Case ──
     sn_hr_core_case --> sn_hr_core_service : hr_service
-sn_hr_core_case --> conflict_of_interest_v1_rp
+sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
+sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
     sn_hr_core_case --> sys_user : opened_by / opened_for
     sn_hr_core_case --> sn_hr_core_profile : subject_person
 
