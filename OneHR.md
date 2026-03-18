@@ -21,7 +21,7 @@ namespace Core_task {
         +attachment(action, fileRef)
     }
 }
-namespace HRSD_Core {
+namespace HRSD {
     class sn_hr_core_case {
         +✅Name: HR Case
         +Usage: Main HR Table
