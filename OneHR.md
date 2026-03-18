@@ -43,7 +43,7 @@ namespace HRSD {
         +security(action, scope)
     }
 class conflict_of_interest_v1_rp {
-        +Record Producer: Conflict of Interest Declaration
+        +Record Producer: Conflict of Interest Declaration V1
         +Category: Code of conduct and declaration of conflict of interest
         +Parent Category: Inclusivity, safety and mental health
         +Catalog: Human Resources Catalog
