@@ -43,7 +43,7 @@ namespace HRSD {
         +security(action, scope)
     }
 class conflict_of_interest_v1_rp {
-        +Record Producer: Conflict of Interest Declaration V1
+        +✅Record Producer: Conflict of Interest Declaration V1
         +Category: Code of conduct and declaration of conflict of interest
         +Parent Category: Inclusivity, safety and mental health
         +Catalog: Human Resources Catalog
@@ -79,6 +79,8 @@ class  sn_hr_core_declaration {
         +reference hr_service_type
     }
     class sn_hr_core_position {
+}
+class sn_hr_core_case_talent_management {
 }
 }
 
@@ -396,6 +398,7 @@ namespace Core_Surveys {
 
     %% ── HR Case ──
     sn_hr_core_case --> sn_hr_core_service : hr_service
+    sn_hr_core_case --> sn_hr_core_case_talent_management : hr_service
 sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
 sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
 conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
