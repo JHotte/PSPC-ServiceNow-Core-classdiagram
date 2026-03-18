@@ -64,10 +64,12 @@ class conflict_of_interest_v1_rp {
     +tasking(action, taskModel)
  }
 class conflict_of_interest_v2_rp {
-        +Record Producer: Conflict of Interest Declaration V2
-        +Category: Code of conduct and declaration of conflict of interest
-        +Parent Category: Inclusivity, safety and mental health
-        +Catalog: Human Resources Catalog
+ }
+class sn_hr_core_case_conflict_of_interest {
+ }
+class  sn_hr_core_declaration {
+ }
+ class  sn_hr_core_coi_question_answers {
  }
     class sn_hr_core_service {
         +📋 HR Service
@@ -79,20 +81,7 @@ class conflict_of_interest_v2_rp {
     class sn_hr_core_position {
 }
 }
-%% ══════════════════════════════
-%% COI
-%% ══════════════════════════════
-namespace COI_Specific {
-    class sn_hr_core_conflict_of_interest {
-        +📋 Conflict of Interest
-    }
-    class sn_hr_core_declaration {
-        +📋 COI Declaration
-    }
-    class sn_hr_core_coi_question_answers {
-        +📋 COI Question Answers
-    }
-}
+
 %% ══════════════════════════════
 %% APPLICATION FILE
 %% ══════════════════════════════
@@ -409,6 +398,9 @@ namespace Core_Surveys {
     sn_hr_core_case --> sn_hr_core_service : hr_service
 sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
 sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
+conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
+sn_hr_core_case_conflict_of_interest --> sn_hr_core_declaration
+sn_hr_core_declaration --> sn_hr_core_coi_question_answers
     sn_hr_core_case --> sys_user : opened_by / opened_for
     sn_hr_core_case --> sn_hr_core_profile : subject_person
 
