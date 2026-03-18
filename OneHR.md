@@ -121,22 +121,22 @@ namespace Service_Catalog {
         +✅Name: Request Item
         +Usage: One record per submitted request
         +number: string
-        +cat_item: reference        %% originating catalog item
-        +request: reference         %% parent REQ (sc_request)
+        +cat_item: reference
+        +request: reference
         +opened_for: reference
         +state: integer
         +stage: string
         +assignment_group: reference
         +assigned_to: reference
         ---
-        +lifecycle(action)               %% submit | update | complete | close | cancel | reopen
-        +fulfillment(action)             %% generateTasks | sync | closeChildren
-        +assignment(action, target)      %% assign(user|group) | unassign
-        +routing(action)                 %% evaluateRules | route | escalate
-        +approvals(action, target)       %% request | approve | reject | reassign
-        +sla(action)                     %% start | pause | stop | recalc
-        +communication(action, channel)  %% notify | requestInfo | acknowledge
-        +attachment(action, fileRef)     %% add | remove
+        +lifecycle(action)
+        +fulfillment(action)
+        +assignment(action, target)
+        +routing(action)
+        +approvals(action, target)
+        +sla(action)
+        +communication(action, channel)
+        +attachment(action, fileRef)
     }
 
     class item_option_new {
