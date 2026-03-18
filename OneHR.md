@@ -47,6 +47,18 @@ class conflict_of_interest_v1_rp {
         +Category: Code of conduct and declaration of conflict of interest
         +Parent Category: Inclusivity, safety and mental health
         +Catalog: Human Resources Catalog
+    +outside_activity_flag: choice
+    +political_activity_flag: choice
+    +assets_flag: choice
+    +gifts_flag: choice
+    +post_employment_flag: choice
+    +relationships_flag: choice
+    +summary_outside_activity: text
+    +summary_political_activity: text
+    +summary_assets: text
+    +summary_gifts: text
+    +summary_post_employment: text
+    +summary_relationships: text
       +lifecycle(action)
     +routing(action)
     +tasking(action, taskModel)
