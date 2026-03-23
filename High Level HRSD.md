@@ -1,177 +1,281 @@
 ```mermaid
 classDiagram
-
-    %% ══════════════════════════════════════════════════════════
-    %% DIAGRAM 1 — CORE TABLES
-    %% Scope: task → sn_hr_core_case → HR extend tables
-    %% Excludes: u_gc127_ custom fields (see COE-specific diagrams)
-    %% ══════════════════════════════════════════════════════════
-
-    %% ── TASK (ServiceNow base) ──────────────────────────────
+namespace Core_task {
     class task {
-        +📋 Task (task)
-        +🎯 Base table for all work items in ServiceNow
-        ---
-        +number: string
-        +short_description: string
-        +description: string
-        +state: integer
-        +priority: integer
-        +urgency: integer
-        +impact: integer
-        +contact_type: string
-        +opened_at: glide_date_time
-        +opened_by: reference
-        +closed_at: glide_date_time
-        +closed_by: reference
-        +close_notes: string
-        +assigned_to: reference
-        +assignment_group: reference
-        +company: reference
-        +location: reference
-        +parent: reference
-        +approval: string
-        +approval_history: journal
-        +approval_set: glide_date_time
-        +due_date: glide_date_time
-        +made_sla: boolean
-        +sla_due: due_date
-        +watch_list: glide_list
-        +work_notes: journal_input
-        +comments: journal_input
-        +sys_class_name: sys_class_name
-        +sys_id: GUID
-        +sys_created_on: glide_date_time
-        +sys_created_by: string
-        +sys_updated_on: glide_date_time
-        +sys_updated_by: string
-    }
-
-    %% ── HR CASE (HRSD core) ─────────────────────────────────
+        +Name: Task
+        +Usage: Base ServiceNow task table
+            }
+}
+namespace HRSD {
     class sn_hr_core_case {
-        +📋 HR Case (sn_hr_core_case)
-        +🎯 Core HR service delivery case — extends task
-        ---
-        +opened_for: reference
-        +subject_person: reference
-        +subject_person_hr_profile: reference
-        +subject_person_job: reference
-        +hr_service: reference
-        +hr_profile: reference
-        +department: reference
-        +topic_category: reference
-        +topic_detail: reference
-        +stage: reference
-        +source: reference
-        +template: reference
-        +details: translated_html
-        +rich_description: html
-        +fulfillment_instructions: translated_html
-        +resolution_requires: Choice
-        +sla: percent_complete
-        +sla_breached: boolean
-        +sla_suspended: boolean
-        +sla_suspended_on: glide_date_time
-        +actual_resolution_time: decimal
-        +ettr: decimal
-        +case_reassignment_count: integer
-        +collaborators: glide_list
-        +case_support_team: glide_list
-        +bulk_case_request: reference
-        +initiated_from: reference
-        +transferred_from: reference
-        +transferred_to: reference
-        +document_template: reference
-        +draft_document: reference
-        +generated_document: reference
-        +pdf_template: reference
-        +le_progress: le_progress
-        +workflow: reference
-        +sys_id: GUID
+        +✅Name: HR Case
+        +Usage: Main HR Table
+         }
+class conflict_of_interest_v1_rp {
+        +✅Record Producer: Conflict of Interest Declaration V1
+        +Category: Code of conduct and declaration of conflict of interest
+        +Parent Category: Inclusivity, safety and mental health
+        +Catalog: Human Resources Catalog
+ }
+class conflict_of_interest_v2_rp {
+ }
+class sn_hr_core_case_conflict_of_interest {
+ }
+class  sn_hr_core_declaration {
+ }
+ class  sn_hr_core_coi_question_answers {
+ }
+    class sn_hr_core_service {
+        +📋 HR Service
+        +🎯 Service catalogue taxonomy
+        +string name
+        +string description
+        +reference hr_service_type
+    }
+    class sn_hr_core_position {
+}
+class sn_hr_core_case_talent_management {
+}
+}
+
+%% ══════════════════════════════
+%% APPLICATION FILE
+%% ══════════════════════════════
+namespace app_file {
+class sys_metadata {
+}
+}
+%% ══════════════════════════════
+%% CORE SERVICE CATALOG
+%% ══════════════════════════════
+namespace Service_Catalog {
+    class sc_catalog {
+        +✅name: Service Catalog
+        +usage: Lists catalog definition (HR, RP, IT, etc.)
+ }
+    class sc_category {
+        +✅name: Catalog Category
+        +usage: List catalog categories (Hire a person, Inclusivity, etc.)
+}
+    class sc_cat_item_producer {
+        +✅name: Record Producer
+        +Usage: HR request form definition
+     
+    }
+    class sc_cat_item {
+    } 
+
+%% VALIDATION NEEDED BELOW %%
+
+    class sc_req_item {
+        +✅Name: Request Item
+        +Usage: One record per submitted request
     }
 
-    %% ── PAYROLL EXTEND ──────────────────────────────────────
-    class sn_hr_core_case_payroll {
-        +📋 Payroll Case (sn_hr_core_case_payroll)
-        +🎯 Extends HR Case for Pay COE — adds payroll-specific fields
-        ---
-        +pay_discrepancy_type: string
-        +business_justification: string
-        +direct_deposit: reference
-        +account_type: string
-        +account_number: string
-        +account_nickname: string
-        +routing_number: string
-        +deposit_type: string
-        +deposit_amount: currency
-        +deposit_percent: decimal
-        +sys_id: GUID
+    class item_option_new {
+        +📋 Variable
+        +🎯 Individual field on a form
+        +string name
+        +string question_text
+        +string type
+        +boolean mandatory
+        +integer order
+        +reference cat_item
+        +reference variable_set
     }
-
-    %% ── BENEFITS EXTEND ─────────────────────────────────────
-    class sn_hr_core_case_benefits {
-        +📋 Benefits Case (sn_hr_core_case_benefits)
-        +🎯 Extends HR Case for Benefits COE — no OOB fields beyond sys_id
-        ---
-        +sys_id: GUID
+    class item_option_new_set {
+        +📋 Variable Set
+        +🎯 Reusable group of fields
+        +string name
+        +string sys_id
     }
-
-    %% ── WORKFORCE ADMIN EXTEND ──────────────────────────────
-    class sn_hr_core_case_workforce_admin {
-        +📋 Workforce Admin Case (sn_hr_core_case_workforce_admin)
-        +🎯 Extends HR Case for WFA COE — staffing, classification, relocation
-        ---
-        +change_date: glide_date
-        +office_location: reference
-        +relocation_date: glide_date
-        +relocation_address: multi_two_lines
-        +relocation_city: string
-        +relocation_state: string
-        +relocation_country: reference
-        +relocation_zip: string
-        +relocation_reason: string
-        +recipient_email: email
-        +work_visa_required: boolean
-        +sys_id: GUID
+    class io_set_item {
+        +📋 Variable Set Link
+        +🎯 Links variable sets to producers
+        +reference sc_cat_item
+        +reference variable_set
     }
+}
+%% ══════════════════════════════
+%% CORE USER AND IDENTITY
+%% ══════════════════════════════
+namespace User_and_Identity {
+    class sys_user {
+        +✅Name: User Profile
+        +Usage: One record per ServiceNow user
+        +Source: Source: PSPC Directory via AD
 
-    %% ── TALENT MANAGEMENT EXTEND ────────────────────────────
-    class sn_hr_core_case_talent_management {
-        +📋 Talent Management Case (sn_hr_core_case_talent_management)
-        +🎯 Extends HR Case for departures, onboarding, background checks
-        ---
-        +business_justification: string
-        +background_check_status: string
-        +background_check_result: string
-        +background_check_percentage_complete: string
-        +background_check_package: reference
-        +drug_screening_status: string
-        +drug_screening_result: string
-        +country_travelling_to: reference
-        +trip_duration: string
-        +visa_category: reference
-        +sys_id: GUID
     }
-
-    %% ── LIFECYCLE EVENT CASE ────────────────────────────────
-    class sn_hr_le_case {
-        +📋 Lifecycle Event Case (sn_hr_le_case)
-        +🎯 Extends HR Case for lifecycle events — onboarding, LWOP, transfers
-        ---
-        +needs_work_visa: boolean
-        +needs_transfer_work_visa: boolean
-        +needs_relocation_assistance: boolean
-        +needs_corporate_credit_card: boolean
-        +sys_id: GUID
+    class sn_hr_core_profile {
+        +✅Name: HR Profile
+        +Usage: Employment data linked to user
+        +Source: MyGCHR Job Data
+     }
+}
+namespace PSPC_Org {
+    class PSPC_Directory {
+        +📋 PSPC Directory
+        +🎯 Employee-maintained profile data
+        +🔗 Syncs from Active Directory
     }
-
-    %% ══════════════════════════════════════════════════════════
-    %% RELATIONSHIPS
-    %% ══════════════════════════════════════════════════════════
-
+    class Active_Directory {
+        +distinguishedName: string
+        +objectGUID: string
+        +sAMAccountName: string
+        +userPrincipalName: string
+        +enabled: boolean
+        +account(action)
+        +membership(action, groupDN)
+        +placement(targetOU)
+        +sync(target)
+    }
+}
+namespace MyGCHR {
+    class MyGCHR_Location {
+        +📋 Location Data
+        +🎯 Work location reference data
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data {
+        +📋 Job Data - Active
+        +🎯 Active employee job records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data_Terminated {
+        +📋 Job Data - Terminated
+        +🎯 Terminated employee records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Position {
+        +📋 Position Data
+        +🎯 Position definitions
+        +🔗 External system - GC
+    }
+}
+namespace Open_Dataset {
+    class Concordance_data {
+        +📋 Concordance Data
+        +🎯 GC-wide org concordance
+        +🔗 Source: TBS Open Data
+    }
+    class Organization_information {
+        +📋 Organization Information
+        +🎯 GC-wide org reference data
+        +🔗 Source: TBS Open Data
+    }
+}
+%% ══════════════════════════════
+%% ORGANIZATIONAL
+%% ══════════════════════════════
+namespace Core_Organizational {
+    class customer_account {
+        +✅Name: Customer Account
+        +Usage: List of identifiers required for authentication, customer classification, and integrations - GC OrgID, Account Type, FAA Schedule, RG Codes
+        +name: string
+        +onboarding(registrationOp)
+        +relationship(hierarchyOp)        
+}
+    class cmn_department {
+        +✅Name: Department
+        +Usage: List of all sectors L2, directorates L3 and childs of PSPC
+        +Source: PSPC Directory
+    }
+    class core_company {
+        +✅Name: Company
+        +Usage: List of all GoC departments and agencies
++Source: TBS
+    }
+    class business_unit {
+    +✅Name: Business Unit
+    +Usage: List of all branches L1 and regions of PSPC
++Source: PSPC Directory
+}
+    class core_company {
+}
+    class customer_account {
+}
+}
+%% ══════════════════════════════
+%% FINANCIAL
+%% ══════════════════════════════
+namespace Core_Organizational {
+    class cmn_cost_center {
+}
+}
+%% ══════════════════════════════
+%% SURVEY ECOSYSTEM
+%% ══════════════════════════════
+namespace Core_Surveys {
+    class asmt_assessment_instance {
+        +✅Name: Survey Instance
+        +Usage: One record per survey sent to a user
+    }
+    class asmt_assessment_instance_question {
+        +✅Name: Survey Response
+        +Usage: Raw answer per question per instance
+    }
+    class asmt_metric_result {
+        +✅Name: Survey Result
+        +Usage: Calculated score - primary analytics table
+    }
+    class asmt_condition {
+        +✅Name: Survey Trigger
+        +Usage: Controls when surveys fire
+    }
+}
+%% ══════════════════════════════
+%% RELATIONSHIPS
+%% ══════════════════════════════
+    %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
-    sn_hr_core_case <|-- sn_hr_core_case_payroll : extends
-    sn_hr_core_case <|-- sn_hr_core_case_benefits : extends
-    sn_hr_core_case <|-- sn_hr_core_case_workforce_admin : extends
-    sn_hr_core_case <|-- sn_hr_core_case_talent_management : extends
-    sn_hr_core_case <|-- sn_hr_le_case : extends
+    task <|-- sc_req_item : extends
+    sc_cat_item <|-- sc_cat_item_producer: extends
+    core_company <|-- customer_account: extends
+    sys_metadata <|-- sc_catalog: extends
+    sys_metadata <|-- sc_category: extends
+
+    %% ── HR Case ──
+    sn_hr_core_case --> sn_hr_core_service : hr_service
+    sn_hr_core_case --> sn_hr_core_case_talent_management : hr_service
+sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
+sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
+conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
+sn_hr_core_case_conflict_of_interest --> sn_hr_core_declaration
+sn_hr_core_declaration --> sn_hr_core_coi_question_answers
+    sn_hr_core_case --> sys_user : opened_by / opened_for
+    sn_hr_core_case --> sn_hr_core_profile : subject_person
+
+    %% ── Catalog ──
+    sc_catalog --> sc_category: catalog
+    sc_cat_item_producer --> item_option_new : direct variables
+    sc_cat_item_producer --> io_set_item : variable sets
+    io_set_item --> item_option_new_set : variable_set
+    item_option_new --> item_option_new_set : variable_set
+
+    %% ── User & Identity ──
+    sn_hr_core_profile --> sys_user : user
+    sys_user --> cmn_department : department
+    sys_user --> core_company : company
+    sn_hr_core_profile --> cmn_department : department
+    cmn_department --> core_company : company
+    customer_account --> core_company : parent
+
+    %% ── User & Identity ──
+    cmn_department --> business_unit: business unit
+    
+    %% ── MyGCHR feeds ──
+    MyGCHR_Job_Data --> sn_hr_core_profile : job data
+    MyGCHR_Job_Data_Terminated --> sn_hr_core_profile : terminated job data
+    MyGCHR_Location --> cmn_department : location data
+    MyGCHR_Position --> sn_hr_core_profile : position data
+
+    %% ── PSPC Directory feeds ──
+    Active_Directory --> PSPC_Directory : syncs to
+    PSPC_Directory --> sys_user : provisions
+
+    %% ── Survey ──
+    asmt_condition --> asmt_assessment_instance : triggers
+    asmt_assessment_instance --> sys_user : user
+    asmt_assessment_instance --> asmt_assessment_instance_question : instance
+    asmt_assessment_instance --> asmt_metric_result : instance
+    
