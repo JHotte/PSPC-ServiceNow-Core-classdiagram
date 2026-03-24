@@ -2,12 +2,34 @@
 classDiagram
 namespace Core_task {
     class task {
-        +Name: Task
+        +✅Name: Task
         +Usage: Base ServiceNow task table
             }
 }
+namespace Core_platform {
+    class cmn_schedule {
+        +✅Name: Schedule
+        +Usage: Defines the business hours to calculate SLA time
+            }
+}
+namespace Core_SLA {
+    class task_SLA {
+        +✅Name: Task SLA
+        +Usage: one per case/task per SLA contract, tracks elapsed time, breach status, pause reasons
+            }
+    class sla_condition {
+        +✅Name: SLA Condition
+        +Usage: Start/payse/stop condition rule
+            }
+ class contract_SLA {
+        +✅Name: SLA Definition
+        +Usage: Rule that defines target times, condition, retroactive start
+            }
+}
 namespace HRSD {
-    class sn_hr_core_case {
+class sn_hr_core_task {
+}
+class sn_hr_core_case {
         +✅Name: HR Case
         +Usage: Main HR Table
          }
@@ -18,6 +40,7 @@ class conflict_of_interest_v1_rp {
         +Catalog: Human Resources Catalog
  }
 class conflict_of_interest_v2_rp {
+        +✅Record Producer: Conflict of Interest Declaration V2
  }
 class sn_hr_core_case_conflict_of_interest {
  }
@@ -75,25 +98,14 @@ namespace Service_Catalog {
     class item_option_new {
         +📋 Variable
         +🎯 Individual field on a form
-        +string name
-        +string question_text
-        +string type
-        +boolean mandatory
-        +integer order
-        +reference cat_item
-        +reference variable_set
     }
     class item_option_new_set {
         +📋 Variable Set
         +🎯 Reusable group of fields
-        +string name
-        +string sys_id
     }
     class io_set_item {
         +📋 Variable Set Link
         +🎯 Links variable sets to producers
-        +reference sc_cat_item
-        +reference variable_set
     }
 }
 %% ══════════════════════════════
@@ -114,20 +126,13 @@ namespace User_and_Identity {
 }
 namespace PSPC_Org {
     class PSPC_Directory {
-        +📋 PSPC Directory
-        +🎯 Employee-maintained profile data
-        +🔗 Syncs from Active Directory
+        +✅Name: PSPC Directory
+        +Usage: Employee-maintained profile data
+        +Source and sync: Syncs from Active Directory
     }
     class Active_Directory {
-        +distinguishedName: string
-        +objectGUID: string
-        +sAMAccountName: string
-        +userPrincipalName: string
-        +enabled: boolean
-        +account(action)
-        +membership(action, groupDN)
-        +placement(targetOU)
-        +sync(target)
++Name: Active Directory
++Usage: Entreprise-used to 
     }
 }
 namespace MyGCHR {
@@ -228,6 +233,11 @@ namespace Core_Surveys {
 %% ══════════════════════════════
     %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
+    task --> task_SLA : Task
+    sla_condition --> task_SLA: SLA definition
+    cmn_schedule --> task_SLA: schedule
+    contract_SLA --> task_SLA: SLA defintion
+    contract_SLA --> cmn_schedule
     task <|-- sc_req_item : extends
     sc_cat_item <|-- sc_cat_item_producer: extends
     core_company <|-- customer_account: extends
