@@ -5,6 +5,14 @@ namespace Core_task {
         +✅Name: Task
         +Usage: Base ServiceNow task table
             }
+class sc_req_item {
+        +✅Name:Requested Item
+        +Usage: TBD
+            }
+class sc_item_option {
+        +✅Name: Options
+        +Usage:
+            }
 }
 namespace Core_platform {
     class cmn_schedule {
@@ -233,6 +241,8 @@ namespace Core_Surveys {
 %% ══════════════════════════════
     %% ── Inheritance ──
     task <|-- sn_hr_core_case : extends
+    task  <|-- sc_req_item : extends
+    sc_req_item --> sc_item_option : item/sys.id
     task --> task_SLA : Task
     sla_condition --> task_SLA: SLA definition
     cmn_schedule --> task_SLA: schedule
@@ -247,11 +257,11 @@ namespace Core_Surveys {
     %% ── HR Case ──
     sn_hr_core_case --> sn_hr_core_service : hr_service
     sn_hr_core_case --> sn_hr_core_case_talent_management : hr_service
-sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
-sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
-conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
-sn_hr_core_case_conflict_of_interest --> sn_hr_core_declaration
-sn_hr_core_declaration --> sn_hr_core_coi_question_answers
+    sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
+    sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
+    conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
+    sn_hr_core_case_conflict_of_interest --> sn_hr_core_declaration
+    sn_hr_core_declaration --> sn_hr_core_coi_question_answers
     sn_hr_core_case --> sys_user : opened_by / opened_for
     sn_hr_core_case --> sn_hr_core_profile : subject_person
 
