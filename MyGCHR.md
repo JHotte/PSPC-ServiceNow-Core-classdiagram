@@ -14,3 +14,5 @@ class HRSD {
 namespace Finances {
     class SIGMA {
             } }
+TRST -- MyGCHR: SLE results
+SIGMA -- MyGCHR: Financial delegation
