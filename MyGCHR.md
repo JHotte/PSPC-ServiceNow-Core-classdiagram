@@ -1,5 +1,6 @@
 ```mermaid
 classDiagram
+direction LR
 namespace Public_Service_Commission {
     class TRST {
             } }
