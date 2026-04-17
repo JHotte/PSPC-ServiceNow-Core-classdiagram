@@ -2,58 +2,32 @@
 classDiagram
 direction LR
 
-    class PublicServiceCommission {
-        TRST
+    class MyGCHR {
+        +PRI
+        +position_number
+        +classification_level
+        +official_language_profile
+        +home_mailing_address
+        +leave_balances
     }
 
-    class HumanResources {
-        MyGCHR
-        MyHRRP
-        HRSD
+    class Phoenix {
+        +gross_net_pay
+        +pay_line_items
+        +statutory_deductions
+        +pension_benefit_premiums
+        +direct_deposit_details
+        +tax_province
     }
 
-    class Finance {
-        SAP_SIGMA
+    class MyGCPay {
+        <<Visualization>>
+        +view_hr_profile()
+        +view_pay_stubs()
+        +track_pay_cases()
+        +view_tax_slips()
     }
 
-    class RGPB {
-        Siebel
-        Penfax
-    }
-
-    class HCMPAB {
-        Phoenix
-        MyGCPay
-        CRM
-    }
-
-    class ThirdPartySystems {
-        CRA
-        CanadaPost
-        Unions
-        Banks
-        Insurance
-        ServiceCanada
-        ProvincialRevenue
-    }
-
-    %% Relationships and Data Flows
-    PublicServiceCommission -- MyGCHR : SLE Results
-    Finance -- MyGCHR : Financial Delegation
-    MyGCHR -- MyHRRP : Data Sync
-    MyGCHR -- HRSD : Data Sync
-    
-    MyGCHR -- Phoenix : HR Data Integration
-    RGPB -- Phoenix : Pension/Benefit Data
-    
-    Phoenix -- MyGCPay : Pay Data View
-    Phoenix -- CRM : Case Management
-    
-    %% Downstream 3rd Party Flows
-    Phoenix -- CRA : Taxes (T4/T4A)
-    Phoenix -- CanadaPost : T4 Mailing
-    Phoenix -- Unions : Deductions
-    Phoenix -- Banks : Contributions (Direct Deposit)
-    Phoenix -- Insurance : Contributions
-    Phoenix -- ServiceCanada : Remuneration Records (ROE)
-    Phoenix -- ProvincialRevenue : RL-1 (Quebec)
+    MyGCHR -- MyGCPay : Syncs Profile & Leave
+    Phoenix -- MyGCPay : Syncs Pay & Deduction Data
+    MyGCHR -- Phoenix : Triggers Pay Actions
