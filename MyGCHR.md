@@ -37,7 +37,16 @@ namespace Human_Capital_Management {
     class Phoenix {
             }
     class MyGCPay {
-            }}
+            }
+class Phoenix_to_MyGCPay {
++Pay_stub_details
++Deductions
++Tax_slips
++Pay_history
++Case_&_Enquiry_Status
++Direct_deposit_info
+            }
+}
 namespace RGPB {
  class Penfax {
             }
@@ -62,13 +71,24 @@ namespace RGPB {
  class Provincial_Revenue {
             }
     }
+ class MyGCHR_to_MyGCPay {
++Leave_balances
++Work_schedule
++Job_&_employment_records
++Benefits_service_date
++Personal_profile_data
+            }
+
 TRST --> MyGCHR: SLE results
 SIGMA --> MyGCHR: Financial delegation
-MyGCHR --> Phoenix
+MyGCHR --> Phoenix: real time integration
 MyHRRP --> MyGCHR: RPA
 MyHRRP --> MyGCHR: Manual entry
 MyGCHR --> HRSD
-MyGCHR --> MyGCPay
+MyGCHR --> MyGCHR_to_MyGCPay: HR-specific info
+MyGCHR_to_MyGCPay --> MyGCPay: HR-specific info
+Phoenix_to_MyGCPay --> MyGCPay: financial and case status data
+Phoenix  --> Phoenix_to_MyGCPay
 HRSD --> MyGCHR: Manual entry
 Phoenix --> CRA: Taxes
 Phoenix --> Canada_Post: T4, R1, etc.
