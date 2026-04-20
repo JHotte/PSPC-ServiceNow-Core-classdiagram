@@ -37,8 +37,20 @@ class TestSource {
     Note(Not in MyGCHR)
 }
 
-SLE_Test_Result --> TestSource : sourced_from
-SLE_Test_Result --> Test_type : sourced_from
-Employee --> SLE_Test_Result : has
-SLE_Test_Result --> Language_tested : evaluated_in
-SLE_Test_Result --> ResultCode : yields
+class Position {
+ +OL_Profile
+}
+
+class Requirements {
++Imperative_appointment
++Non-Imperative_appointment
++Acting_appointment
+}
+
+SLE_Test_Result --> TestSource : sourced from
+TestSource --> Language_tested : tested in
+Language_tested --> Test_type : tested for
+Test_type --> ResultCode : has
+SLE_Test_Result --> Requirements
+Requirements -->  Position
+
