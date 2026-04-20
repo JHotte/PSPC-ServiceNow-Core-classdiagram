@@ -47,30 +47,6 @@ class Phoenix_to_MyGCPay {
 +Direct_deposit_info
             }
 }
-namespace RGPB {
- class Penfax {
-            }
-    }
-    namespace 3rd_parties_system {
- class CRA {
-+taxes
-            }
- class Canada_Post {
-            }
- class Unions {
-+memberships
-            }
- class Banks {
-+direct_deposit
-            }
- class Insurances_compagnies {
-+coverages
-            }
- class Service_Canada {
-            }
- class Provincial_Revenue {
-            }
-    }
  class MyGCHR_to_MyGCPay {
 +Leave_balances
 +Work_schedule
@@ -78,7 +54,15 @@ namespace RGPB {
 +Benefits_service_date
 +Personal_profile_data
             }
-
+ class 3rd_party {
++Insurances_compagnies(coverages)
++Banks(direct_deposit)
++Unions(memberships)
++CRA(taxes)
++Canada_post(T4,R1,etc.)
++Service_Canada(remuneration_records)
++Provilcial_revenue(remuneration_records)
+            }
 TRST --> MyGCHR: SLE results
 SIGMA --> MyGCHR: Financial delegation
 MyGCHR --> Phoenix: real time integration
@@ -89,11 +73,5 @@ MyGCHR --> MyGCHR_to_MyGCPay: HR-specific info
 MyGCHR_to_MyGCPay --> MyGCPay: HR-specific info
 Phoenix_to_MyGCPay --> MyGCPay: financial and case status data
 Phoenix  --> Phoenix_to_MyGCPay
+Phoenix  --> 3rd_party
 HRSD --> MyGCHR: Manual entry
-Phoenix --> CRA: Taxes
-Phoenix --> Canada_Post: T4, R1, etc.
-Phoenix --> Unions: Deductions
-Phoenix --> Banks: Deductions
-Phoenix --> Insurances_compagnies: Contributions
-Phoenix --> Service_Canada: Renumeration records
-Phoenix --> Provincial_Revenue: Renumeration records
