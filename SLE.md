@@ -41,6 +41,21 @@ class Position {
  +OL_Profile
 }
 
+class Preferred_language {
++French
++English
+}
+
+class First_official_Language {
++French
++English
+}
+
+class Language_Code {
++Cdn French
++English
+}
+
 class Requirements {
 +Imperative_appointment
 +Non-Imperative_appointment
@@ -51,6 +66,12 @@ SLE_Test_Result --> TestSource : sourced from
 TestSource --> Language_tested : tested in
 Language_tested --> Test_type : tested for
 Test_type --> ResultCode : has
-SLE_Test_Result --> Requirements
+ResultCode --> Requirements : is position is not unilingual
+Employee --> Requirements : if appointed
 Requirements -->  Position
+Employee -->  Preferred_language : has
+Employee -->  SLE_Test_Result : might have
+Employee -->  First_official_Language
+Employee -->  Language_Code
+First_official_Language -->  Language_tested : will be tested in other language
 
