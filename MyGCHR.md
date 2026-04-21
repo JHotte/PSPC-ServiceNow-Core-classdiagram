@@ -8,6 +8,8 @@ namespace Human_Resources {
     class MyGCHR {
 +employee_profile
 +position_profile
++Employment_data(HR_Profile)
++Position_data(positions)
             }
 class MyHRRP {
 +MyGCHR_support
@@ -23,6 +25,10 @@ class MyHRRP {
 +HRB_inquiries
 +SLE_testing_queue
             }
+class MyGCHR_to_HRSD {
++Locations
+
+}
 class HRSD {
 +Conflict_of_Interest
 +Pay_benefits_pension
@@ -71,12 +77,14 @@ TRST --> MyGCHR: SLE results
 SIGMA --> MyGCHR: Financial delegation
 MyGCHR --> Phoenix: real time integration
 MyGCHR --> MID_Server
+MyGCHR --> MyGCHR_to_HRSD : manual upload
+MyGCHR_to_HRSD --> HRSD
 MID_Server -->  HRSD
 MyHRRP --> MyGCHR: RPA
-MyHRRP --> MyGCHR: Manual entry
+MyHRRP --> MyGCHR: manual entry
 MyGCHR --> MyGCHR_to_MyGCPay: HR-specific info
 MyGCHR_to_MyGCPay --> MyGCPay: HR-specific info
 Phoenix_to_MyGCPay --> MyGCPay: financial and case status data
 Phoenix  --> Phoenix_to_MyGCPay
 Phoenix  --> 3rd_party
-HRSD --> MyGCHR: Manual entry
+HRSD --> MyGCHR: manual entry
