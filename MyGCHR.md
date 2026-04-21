@@ -11,6 +11,9 @@ namespace Human_Resources {
 +Employment_data(HR_Profile)
 +Position_data(positions)
             }
+class HRDataMart {
++Employment_data(HR_Profile)
+   }
 class MyHRRP {
 +MyGCHR_support
 +HR_requests_and_supports
@@ -29,11 +32,6 @@ class MyGCHR_to_HRSD {
 +Locations
 
 }
-class HRSD {
-+Conflict_of_Interest
-+Pay_benefits_pension
-+Departure_early_end
-            } 
 }
 namespace Finances {
     class SIGMA {
@@ -71,12 +69,18 @@ class Phoenix_to_MyGCPay {
             }
 namespace ServiceNow {
     class MID_Server {
-+HR_Profile_data
-            }}
++Employment_data(HR_Profile)
+            }
+class HRSD {
++Conflict_of_Interest
++Pay_benefits_pension
++Departure_early_end
+            } }
 TRST --> MyGCHR: SLE results
 SIGMA --> MyGCHR: Financial delegation
 MyGCHR --> Phoenix: real time integration
-MyGCHR --> MID_Server
+MyGCHR --> HRDataMart
+HRDataMart --> MID_Server
 MyGCHR --> MyGCHR_to_HRSD : manual upload
 MyGCHR_to_HRSD --> HRSD
 MID_Server -->  HRSD
