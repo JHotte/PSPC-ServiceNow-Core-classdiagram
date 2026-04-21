@@ -63,12 +63,17 @@ class Phoenix_to_MyGCPay {
 +Service_Canada(remuneration_records)
 +Provilcial_revenue(remuneration_records)
             }
+namespace ServiceNow {
+    class MID_Server {
++HR_Profile_data
+            }}
 TRST --> MyGCHR: SLE results
 SIGMA --> MyGCHR: Financial delegation
 MyGCHR --> Phoenix: real time integration
+MyGCHR --> MID_Server
+MID_Server -->  HRSD
 MyHRRP --> MyGCHR: RPA
 MyHRRP --> MyGCHR: Manual entry
-MyGCHR --> HRSD
 MyGCHR --> MyGCHR_to_MyGCPay: HR-specific info
 MyGCHR_to_MyGCPay --> MyGCPay: HR-specific info
 Phoenix_to_MyGCPay --> MyGCPay: financial and case status data
