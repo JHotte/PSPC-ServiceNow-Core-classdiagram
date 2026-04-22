@@ -30,26 +30,12 @@ sc_cat_item_producer
 status(inactive)
     }
 }
-namespace Classification {
-class Classification_and_organizational_structure {
-sc_category
-status(inactive)
-    }
-class Request_a_review_or_update_a_job_description {
-sc_cat_item_producer
-status(inactive)
-    }
-class Modify_a_position {
-sc_cat_item_producer
-status(inactive)
-    }
+class other_categories{
 }
 Human_Resources_Catalog -- Inclusivity_safety_and_mental_health
+Human_Resources_Catalog -- other_categories
 Inclusivity_safety_and_mental_health -- Code_of_conduct_and_declaration_of_conflict_of_interest
 Inclusivity_safety_and_mental_health -- Diversity_and_inclusion
 Inclusivity_safety_and_mental_health -- Health_and_safety_support
 Code_of_conduct_and_declaration_of_conflict_of_interest -- Conflict_of_Interest_Declaration_V1.3
 Code_of_conduct_and_declaration_of_conflict_of_interest -- Conflict_of_Interest_Declaration_V2
-Human_Resources_Catalog -- Classification_and_organizational_structure
-Classification_and_organizational_structure -- Request_a_review_or_update_a_job_description
-Classification_and_organizational_structure -- Modify_a_position
