@@ -1,5 +1,17 @@
 ```mermaid
 classDiagram
+class IT_Service_Catalog {
+status(active)
+sc_catalog
+    }
+class Real_Propreties {
+status(active)
+sc_catalog
+    }
+class Field_Service_Catalog {
+status(active)
+sc_catalog
+    }
 class Human_Resources_Catalog {
 status(active)
 sc_catalog
