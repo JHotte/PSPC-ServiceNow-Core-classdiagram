@@ -1,28 +1,25 @@
 ```mermaid
 classDiagram
-namespace HR_Case {
-class sn_hr_core_case {
-HR Case
-}}
-namespace COI_form {
-class sn_hr_core_conflict_of_interest{
-Conflict of Interest
+namespace Core {
+class Task {
+Name: Task
+}
+class HR Core Case {
+Name: sn_hr_core_case
 }
 }
-namespace Declaration_form {
-class sn_hr_core_declaration{
-COI Declaration
+namespace COI 2.0 {
+class Conflict of interest {
+Name: sn_hr_core_conflict_of_interest
+}
+class COI Declaration {
+Name: sn_hr_core_declaration
+}
+class COI Situation {
+Name: sn_hr_core_coi_question_answers
 }
 }
-namespace Custom_table {
-class test3
-}
-namespace Situation {
-class sn_hr_core_coi_question_answers{
-}
-}
-namespace ACL {
-class test2{
-}
-}
-sn_hr_core_case .. sn_hr_core_conflict_of_interest : extend
+Task -- HR Core Case
+HR Core Case -- Conflict of interest
+Conflict of interest -- COI Declaration
+COI Declaration -- COI Situation
