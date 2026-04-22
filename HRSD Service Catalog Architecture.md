@@ -12,10 +12,6 @@ class Code_of_conduct_and_declaration_of_conflict_of_interest {
 sc_category
 status(active)
     }
-class Code_of_conduct_and_declaration_of_conflict_of_interest {
-sc_category
-status(active)
-    }
 class Diversity_and_inclusion {
 sc_category
 status(inactive)
