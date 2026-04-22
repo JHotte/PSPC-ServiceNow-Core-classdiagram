@@ -61,7 +61,7 @@ Create_or_abolish_a_position(rp)
 Update_a_position(rp)
     }
 }
-namespace Departure {
+namespace DEE {
 class Departure_and_Early_end_of_Employment{
 sc_category
 status_active
@@ -69,6 +69,10 @@ status_active
 class Departure_record_producer{
 sc_cat_item_producer
 status_active
+End of employment(rp)
+Transfer_out_to_another_federal_organization(rp)
+Non-renewal_of_a_term_employment(rp)
+Early_end_of_a_temporary_employment(rp)
  }
 }
 namespace LRD{
@@ -89,6 +93,14 @@ sc_category
 status_inactive
 }
 class Return_record_producer{
+sc_cat_item_producer
+status_inactive
+}
+class Departure{
+sc_category
+status_inactive
+}
+class Departure_record_producer{
 sc_cat_item_producer
 status_inactive
 }
@@ -205,8 +217,10 @@ Departure_and_Early_end_of_Employment -- Departure_record_producer
 %% Sub_category
 Leave_return_or_departure -- Leave
 Leave_return_or_departure -- Return
+Leave_return_or_departure -- Departure
 Leave -- Leave_record_producer
 Return -- Return_record_producer
+Departure -- Departure_record_producer
 
 %% Sub_category
 Pay_benefits_and_pension_plan -- Pay
