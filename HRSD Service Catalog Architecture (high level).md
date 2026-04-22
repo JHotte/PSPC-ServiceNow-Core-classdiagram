@@ -97,6 +97,18 @@ class Pension_plan{
 sc_category
 status(active)
 }
+class Pay_record_producer{
+sc_cat_item_producer
+status(active)
+}
+class Benefits_record_producer{
+sc_cat_item_producer
+status(active)
+}
+class Pension_plan_record_producer{
+sc_cat_item_producer
+status(active)
+}
 }
 
 %% Category
@@ -123,6 +135,14 @@ Leave_return_or_departure -- Leave
 Leave_return_or_departure -- Return
 Leave -- Leave_record_producer
 Return -- Return_record_producer
+
+%% Sub_category
+Pay_benefits_and_pension_plan -- Pay
+Pay_benefits_and_pension_plan -- Benefits
+Pay_benefits_and_pension_plan -- Pension_plan
+Pay -- Pay_record_producer
+Benefits -- Benefits_record_producer
+Pension_plan -- Pension_plan_record_producer
 
 
 
