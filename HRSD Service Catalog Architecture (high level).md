@@ -120,6 +120,17 @@ sc_category
 status(inactive)
 }
 }
+namespace Support_HRB_IT{
+class Support_or_access_to_systems_for_HRB_specialists{
+sc_category
+status(inactive)
+}
+class Support_HRB_IT_record_producer{
+sc_cat_item_producer
+status(inactive)
+}
+}
+
 %% Category
 Human_Resources_Catalog -- Inclusivity_safety_and_mental_health
 Human_Resources_Catalog -- Classification_and_organizational_structure
@@ -127,6 +138,7 @@ Human_Resources_Catalog -- Departure_and_Early_end_of_Employment
 Human_Resources_Catalog -- Leave_return_or_departure
 Human_Resources_Catalog -- Pay_benefits_and_pension_plan
 Human_Resources_Catalog -- Staffing_and_On_boarding_of_a_person
+Human_Resources_Catalog -- Support_or_access_to_systems_for_HRB_specialists
 
 %% Sub_category
 Inclusivity_safety_and_mental_health -- Code_of_conduct_and_declaration_of_conflict_of_interest
@@ -156,5 +168,8 @@ Pension_plan -- Pension_plan_record_producer
 
 %% Sub_category
 Staffing_and_On_boarding_of_a_person -- Staffing_record_producer
+
+%% Sub_category
+Support_or_access_to_systems_for_HRB_specialists -- Support_HRB_IT_record_producer
 
 
