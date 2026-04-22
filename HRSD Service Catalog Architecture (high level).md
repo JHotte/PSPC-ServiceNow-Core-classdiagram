@@ -110,13 +110,23 @@ sc_cat_item_producer
 status(active)
 }
 }
-
+namespace SOBP{
+class Staffing_and_On_boarding_of_a_person{
+sc_category
+status(inactive)
+}
+class Staffing_record_producer{
+sc_category
+status(inactive)
+}
+}
 %% Category
 Human_Resources_Catalog -- Inclusivity_safety_and_mental_health
 Human_Resources_Catalog -- Classification_and_organizational_structure
 Human_Resources_Catalog -- Departure_and_Early_end_of_Employment
 Human_Resources_Catalog -- Leave_return_or_departure
 Human_Resources_Catalog -- Pay_benefits_and_pension_plan
+Human_Resources_Catalog -- Staffing_and_On_boarding_of_a_person
 
 %% Sub_category
 Inclusivity_safety_and_mental_health -- Code_of_conduct_and_declaration_of_conflict_of_interest
@@ -144,6 +154,7 @@ Pay -- Pay_record_producer
 Benefits -- Benefits_record_producer
 Pension_plan -- Pension_plan_record_producer
 
-
+%% Sub_category
+Staffing_and_On_boarding_of_a_person -- Staffing_record_producer
 
 
