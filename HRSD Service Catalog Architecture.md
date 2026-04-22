@@ -30,9 +30,17 @@ sc_cat_item_producer
 status(inactive)
     }
 }
+namespace Classification {
+class Classification_and_organizational_structure {
+sc_category
+status(inactive)
+    }
+}
 Human_Resources_Catalog -- Inclusivity_safety_and_mental_health
 Inclusivity_safety_and_mental_health -- Code_of_conduct_and_declaration_of_conflict_of_interest
 Inclusivity_safety_and_mental_health -- Diversity_and_inclusion
 Inclusivity_safety_and_mental_health -- Health_and_safety_support
 Code_of_conduct_and_declaration_of_conflict_of_interest -- Conflict_of_Interest_Declaration_V1.3
 Code_of_conduct_and_declaration_of_conflict_of_interest -- Conflict_of_Interest_Declaration_V2
+Human_Resources_Catalog -- Classification_and_organizational_structure
+
