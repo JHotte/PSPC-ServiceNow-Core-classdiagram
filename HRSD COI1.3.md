@@ -16,6 +16,12 @@ class Metric_definition {
 Name: Metric_definition
 Rules to measure determined data points
 }
+class task_SLA {
+Name: task_SLA
+}
+class SLA_Definition {
+Name: contract_SLA
+}
 namespace Core {
 class Task {
 Name: Task
@@ -36,3 +42,5 @@ Task -- HR_Core_Case
 Metric_instance -- Metric_definition: definition
 HR_Core_Case -- HR_Workforce_Administration_Case
 Metric_instance -- HR_Workforce_Administration_Case
+task_SLA -- Task
+task_SLA -- SLA_Definition: definition
