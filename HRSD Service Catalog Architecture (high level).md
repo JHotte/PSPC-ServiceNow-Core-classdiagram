@@ -9,7 +9,7 @@ sc_catalog
 status_active
 sc_catalog
     }
-class Real_Propreties {
+class Real_Properties_Catalog {
 sc_catalog
 status_active
 sc_catalog
