@@ -37,6 +37,12 @@ Name: sys_user_group
 class Sys_Attachment {
 Name: sys_attachment
 }
+class Core_Company {
+Name: core_company
+}
+class Cmn_Location {
+Name: cmn_location
+}
 Sys_Audit -- Task
 Sys_Audit -- HR_Core_Case
 Task -- HR_Core_Case
@@ -45,3 +51,10 @@ HR_Core_Case -- HR_Workforce_Administration_Case
 Metric_instance -- HR_Workforce_Administration_Case
 task_SLA -- Task
 task_SLA -- SLA_Definition: definition
+Task -- Sys_User
+Task -- Sys_User_Group
+Task -- Sys_Attachment
+Task -- Core_Company
+Task -- Cmn_Location
+
+
