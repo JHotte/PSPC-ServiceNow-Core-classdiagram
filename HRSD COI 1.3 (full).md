@@ -28,6 +28,15 @@ class HR_Workforce_Administration_Case {
 Name: sn_hr_core_case_workforce_admin
 }
 }
+class Sys_User {
+Name: sys_user
+}
+class Sys_User_Group {
+Name: sys_user_group
+}
+class Sys_Attachment {
+Name: sys_attachment
+}
 Sys_Audit -- Task
 Sys_Audit -- HR_Core_Case
 Task -- HR_Core_Case
