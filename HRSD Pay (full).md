@@ -1,5 +1,9 @@
 ```mermaid
 classDiagram
+namespace Core {
+class task {
+Name: task
+}
 class Sys_Audit {
 Name: sys_audit
 }
@@ -12,6 +16,23 @@ Name: Metric_definition
 class task_SLA {
 Name: task_SLA
 }
-class SLA_Definition {
-Name: contract_SLA
+class contract_SLA {
+Name: SLA Definition
 }
+}
+namespace HR {
+class sn_hr_core_case_payroll {
+Name: HR Payroll Case
+T4, Relevé 1 and Relevé 2(RP)
+}
+class sn_hr_core_case {
+Name: HR Case
+}
+}
+Metric_instance -- Metric_definition
+Metric_instance -- Sys_Audit
+task_SLA -- Sys_Audit
+task_SLA -- contract_SLA
+task -- sn_hr_core_case: Number
+sn_hr_core_case -- sn_hr_core_case_payroll: Number
+task -- sn_hr_core_case_payroll: Number
