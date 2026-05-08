@@ -24,6 +24,14 @@ namespace HR {
 class sn_hr_core_case_payroll {
 Name: HR Payroll Case
 T4, Relevé 1 and Relevé 2(RP)
+Pay increment adjustment(RP)
+Overtime(RP)
+Voluntary cash out(RP)
+Copy of pay file(RP)
+Deductions(RP)
+Overpayment(RP)
+Lost or stolen paycheque(RP)
+Severance Pay(RP)
 }
 class sn_hr_core_case {
 Name: HR Case
