@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-namespace Core {
+namespace Global {
 class task {
 Name: task
 }
@@ -20,7 +20,7 @@ class contract_SLA {
 Name: SLA Definition
 }
 }
-namespace HR {
+namespace Human_Resources_Core {
 class sn_hr_core_case_payroll {
 Name: HR Payroll Case
 T4, Relevé 1 and Relevé 2(RP)
@@ -33,14 +33,23 @@ Overpayment(RP)
 Lost or stolen paycheque(RP)
 Severance Pay(RP)
 }
+class sn_hr_core_case_benefits {
+Name: HR Benefits Case
+Public Service Health Care Plan PSHCP(RP)
+
+}
 class sn_hr_core_case {
 Name: HR Case
 }
 }
+%% -----------
+%% Core -----
+%% -----------
 Metric_instance -- Metric_definition
 Metric_instance -- Sys_Audit
 task_SLA -- Sys_Audit
 task_SLA -- contract_SLA
-task -- sn_hr_core_case: Number
-sn_hr_core_case -- sn_hr_core_case_payroll: Number
-task -- sn_hr_core_case_payroll: Number
+task -- sn_hr_core_case: number
+sn_hr_core_case -- sn_hr_core_case_payroll: number
+sn_hr_core_case -- sn_hr_core_case_benefits: number
+task -- sn_hr_core_case_payroll: number
