@@ -36,6 +36,10 @@ Severance Pay(RP)
 class sn_hr_core_case_benefits {
 Name: HR Benefits Case
 Public Service Health Care Plan PSHCP(RP)
+Public Service Dental Care Plan PSDCP(RP)
+Disability insurance and long-term disability(RP)
+Public Service Management Insurance Plan PSMIP(RP)
+Pension Plan(RP)
 
 }
 class sn_hr_core_case {
