@@ -25,8 +25,13 @@ Source()
 %% ---------
 namespace Global_Catalog {
 class sc_catalog {
+Label: Catalog
+Real Properties (catalog)
+Field Service Catalog (catalog)
+
 }
 class sc_category {
+Label: Category
 }
 class sc_cat_item {
 }
