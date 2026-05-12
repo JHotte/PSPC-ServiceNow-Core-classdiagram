@@ -1,17 +1,22 @@
 ```mermaid
 classDiagram
-namespace Global {
-class cmn_location {
-AOID/DFRP
-Source(sigma_refx)
+%% ---------
+%% User
+%% ---------
+namespace Global_User {
+class sys_user_group {
+Source()
 }
 class sys_user {
 Source(entra_ID)
 }
-class core_company {
-Source()
 }
-class sys_user_group {
+namespace Global_Core {
+class cmn_location {
+AOID/DFRP
+Source(sigma_refx)
+}
+class core_company {
 Source()
 }
 }
@@ -27,13 +32,14 @@ class sc_cat_item {
 }
 }
 %% ---------
-%% CSM
+%% FSM
 %% ---------
-namespace Global_CSM {
+namespace Global_FSM {
 class wm_order {
 Primary Record
 }
 }
+
 %% ---------
 %% linkages
 %% ---------
