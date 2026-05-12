@@ -4,11 +4,16 @@ class sys_user {
 label:user
 +status:active
 }
-class building {
+class cmn_building {
 label:Building
-+status:inactive
++status:active
+}
+class core_company {
+label:Company
++status:active
 }
 %% ----------
 Linkages
 %% ----------
-sys_user -- building
+sys_user -- cmn_building
+sys_user -- core_company
