@@ -78,7 +78,8 @@ sn_hr_core_service -- sn_hr_core_case: defines case type and behaviour
 task -- sn_hr_core_case
 sn_hr_core_case -- sn_hr_core_case_payroll
 sn_hr_core_case -- sn_hr_core_case_benefits
-sc_cat_item_producer -- sn_hr_core_service
+sc_cat_item_producer --> "1..*" sn_hr_core_service
+sc_cat_item_producer -- sn_hr_core_case
 sn_hr_core_criteria -- sys_metadata: extends
 sn_hr_core_service  -- sn_hr_core_template: HR Service to HR Template
 sc_catalog -- sc_category
