@@ -4,9 +4,6 @@ namespace Global {
 class task {
 Name: task
 }
-class Sys_Audit {
-Name: sys_audit
-}
 class Metric_instance {
 Name: Metric_instance
 }
@@ -46,14 +43,14 @@ class sn_hr_core_case {
 Name: HR Case
 }
 }
-%% -----------
-%% Core -----
-%% -----------
-Metric_instance -- Metric_definition
-Metric_instance -- Sys_Audit
-task_SLA -- Sys_Audit
-task_SLA -- contract_SLA
-task -- sn_hr_core_case: number
-sn_hr_core_case -- sn_hr_core_case_payroll: number
-sn_hr_core_case -- sn_hr_core_case_benefits: number
-task -- sn_hr_core_case_payroll: number
+Metric_instance -- Metric_definition: defnitions and configurations
+Metric_instance -- sn_hr_core_case: metric capture
+Metric_instance -- sn_hr_core_case_payroll: metric capture
+Metric_instance -- sn_hr_core_case_benefits: metric capture
+task_SLA -- contract_SLA: defnitions and configurations
+task_SLA -- sn_hr_core_case: SLA capture
+task_SLA -- sn_hr_core_case_payroll: SLA capture
+task -- sn_hr_core_case
+sn_hr_core_case -- sn_hr_core_case_payroll
+sn_hr_core_case -- sn_hr_core_case_benefits
+task -- sn_hr_core_case_payroll
