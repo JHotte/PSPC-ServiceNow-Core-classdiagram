@@ -45,8 +45,8 @@ label:Time Sheet Policy
 %% ----------
 Linkages
 %% ----------
-sys_user -- cmn_building
-sys_user -- core_company
+sys_user -- cmn_building: unsued for users
+sys_user -- core_company: 
 sys_user -- cmn_cost_center
 sys_user -- cmn_department
 sys_user -- sys_user_group
