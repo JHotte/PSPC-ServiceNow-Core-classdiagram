@@ -74,13 +74,12 @@ Metric_instance -- task: metric capture
 task_SLA -- contract_SLA: defnitions and configurations
 task_SLA -- task: SLA capture
 sn_hr_core_service -- sys_metadata: extends
-sn_hr_core_service -- sn_hr_core_case: hr service list
+sn_hr_core_service -- sn_hr_core_case: defines case type and behaviour
 task -- sn_hr_core_case
 sn_hr_core_case -- sn_hr_core_case_payroll
 sn_hr_core_case -- sn_hr_core_case_benefits
 sc_cat_item_producer -- sn_hr_core_service
 sn_hr_core_criteria -- sys_metadata: extends
-sn_hr_core_service -- sn_hr_core_case: case type
 sn_hr_core_service  -- sn_hr_core_template: HR Service to HR Template
 sc_catalog -- sc_category
 sc_category -- sc_cat_item_producer
