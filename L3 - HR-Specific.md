@@ -15,4 +15,6 @@ class 3 {
 namespace HRSD {
 class sn_hr_core_position {
 }
+class sn_hr_core_case {
+}
 }
