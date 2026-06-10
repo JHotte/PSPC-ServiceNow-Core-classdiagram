@@ -34,6 +34,10 @@ Label: User
 Source: EntraID/PSPC Directory
 Active and not contractors/consultants only (script)
 }
+class cmn_location {
+Label: Locations
+Source: SIGMA ReFX
+Source: Active
 }
 %% HRSD %%
 namespace HRSD {
@@ -60,6 +64,7 @@ Label: Conflict of interest
 }
 }
 %% Links %%
+%% MH%%
 sn_mh_team_data_config -- sn_employee_profile: "New hire / Employee profile / Leaving soon"
 sn_mh_team_data_config -- sn_hr_core_case_workforce_admin : "Coi done"
 sn_mh_team_data_config -- sn_hr_core_emp_time_off : "PTO"
@@ -68,6 +73,12 @@ sn_mh_team_data_config -- sn_hr_core_profile: HR Profile
 sn_mh_team_data_config -- sys_user: "User records"
 sn_mh_team_data_config -- sn_hr_core_conflict_of_interest: "COI Status Script"
 sn_mh_team_data_config -- sn_mh_team_data_config: "Filter configs"
-sn_employee_profile -- sn_hr_core_profile: HR Profile
+sn_mh_team_data_config  -- sn_hr_core_position: "Position hierarchy for managers"
 sn_mh_important_dates_config -- sn_hr_core_emp_time_off
 sn_mh_important_dates_config -- sn_hr_core_profile
+
+%% HRSD %%
+sn_employee_profile -- sn_hr_core_profile: HR Profile
+sn_hr_core_position -- sys_user "Employee"
+sn_hr_core_position -- sn_hr_core_position: "Manager"
+sn_hr_core_position -- cmn_location: "location"
