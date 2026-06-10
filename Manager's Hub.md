@@ -27,7 +27,7 @@ Status: TBD
 class sn_mh_team_filter_config { 
 }
 }
-%% Core ServiceNow %%
+%% SN_Core %%
 namespace Core {
 class sys_user {
 Label: User
@@ -40,7 +40,7 @@ Source: SIGMA ReFX
 Source: Active
 }
 }
-%% HRSD %%
+%% SN_HRSD %%
 namespace HRSD {
 class sn_hr_core_case_workforce_admin {
 }
@@ -64,6 +64,17 @@ class sn_hr_core_conflict_of_interest {
 Label: Conflict of interest
 }
 }
+%% External %%
+namespace PSPC {
+class SIGMA_ReFX {
+}
+class MyGCHR {
+}
+class EntraID_AD {
+}
+class PSPC_Directory {
+}
+}
 %% Links %%
 %% MH%%
 sn_mh_team_data_config -- sn_employee_profile: "New hire / Employee profile / Leaving soon"
@@ -82,3 +93,8 @@ sn_employee_profile -- sn_hr_core_profile: HR Profile
 sn_hr_core_position -- sys_user: "Employee"
 sn_hr_core_position -- sn_hr_core_position: "Manager"
 sn_hr_core_position -- cmn_location: "location"
+%% External %%
+EntraID_AD -- sys_user: "Users"
+PSPC_Directory -- EntraID_AD
+MyGCHR -- sn_hr_core_profile
+
