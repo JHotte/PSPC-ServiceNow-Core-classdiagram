@@ -39,6 +39,7 @@ Label: Locations
 Source: SIGMA ReFX
 Source: Active
 }
+}
 %% HRSD %%
 namespace HRSD {
 class sn_hr_core_case_workforce_admin {
@@ -76,9 +77,8 @@ sn_mh_team_data_config -- sn_mh_team_data_config: "Filter configs"
 sn_mh_team_data_config  -- sn_hr_core_position: "Position hierarchy for managers"
 sn_mh_important_dates_config -- sn_hr_core_emp_time_off
 sn_mh_important_dates_config -- sn_hr_core_profile
-
 %% HRSD %%
 sn_employee_profile -- sn_hr_core_profile: HR Profile
-sn_hr_core_position -- sys_user "Employee"
+sn_hr_core_position -- sys_user: "Employee"
 sn_hr_core_position -- sn_hr_core_position: "Manager"
 sn_hr_core_position -- cmn_location: "location"
