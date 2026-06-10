@@ -91,10 +91,10 @@ sn_mh_important_dates_config -- sn_hr_core_profile
 %% HRSD %%
 sn_employee_profile -- sn_hr_core_profile: HR Profile
 sn_hr_core_position -- sys_user: "Employee"
-sn_hr_core_position -- sn_hr_core_position: "Manager"
 sn_hr_core_position -- cmn_location: "location"
 %% External %%
 EntraID_AD -- sys_user: "Users"
 PSPC_Directory -- EntraID_AD
-MyGCHR -- sn_hr_core_profile
+MyGCHR -- sn_hr_core_profile: "Employee HR Data"
+SIGMA_ReFX -- cmn_location: "locations"
 
