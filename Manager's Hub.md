@@ -1,60 +1,35 @@
 ```mermaid
 classDiagram
-namespace SN_Core {
-class tbd {
+namespace Manager_Hub {
+class sn_mh_team_data_config {
+Team Data Configuration
+Displays employee details on manager's dashboard
+}
+class sn_mh_team_column_config {
+Teams Column Configuration
+Displays variables that shows on 'Your Team'
 }
 }
-namespace PSPC_Governed_Core {
-class cmn_location {
+class sn_employee_profile {
 }
-class core_company {
-}
-class business_unit {
-}
-class cmn_cost_center {
-}
-class cmn_location {
-}
-}
-namespace Platform_Core {
 class sys_user {
 }
-class cmn_schedule {
-}
-class sys_user_group {
-}
-class sys_user_role {
-}
-}
-namespace HRSD_Core {
-class sn_hr_core_position {
-}
 class sn_hr_core_profile {
+Source: MyGCHR
 }
-class sn_hr_core_case {
+class sn_hr_core_emp_time_off {
 }
+class sn_hr_core_emp_time_off {
 }
-namespace HRSD_Catalogue_COI {
-class sn_hr_core_conflict_of_interest {
+class sn_hr_core_leave_of_absence {
 }
-class sn_hr_core_declaration {
-}
-class sn_hr_core_coi_question_answers {
-}
-class sn_hr_core_coi2_db_view {
-}
-}
-namespace HRSD_Catalogue_Pay_Pension_Benefits {
-class sn_hr_core_case_payroll {
-}
-class sn_hr_core_case_benefits {
-}
+class coi_completion {
 }
 %% Links %%
-sys_user -- sn_hr_core_profile
-%% Links COI %%
-sn_hr_core_conflict_of_interest -- sn_hr_core_declaration
-sn_hr_core_conflict_of_interest -- sn_hr_core_coi_question_answers
-%% Links Case Catalogue
-sn_hr_core_case -- sn_hr_core_case_payroll
-sn_hr_core_case -- sn_hr_core_case_benefits
+sn_mh_team_data_config -- sn_employee_profile: New hire / Employee profile / Leaving soon
+sn_mh_team_data_config -- sn_hr_core_case_workforce_admin : Coi done
+sn_mh_team_data_config -- sn_hr_core_emp_time_off : PTO
+sn_mh_team_data_config -- sn_hr_core_leave_of_absence : Upcoming and actual leave
+sn_mh_team_data_config -- sn_hr_core_profile: HR Profile
+sn_mh_team_data_config -- sys_user: User
+sn_mh_team_data_config -- coi_completion: Coi completion
