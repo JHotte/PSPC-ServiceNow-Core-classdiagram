@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 namespace Core_task {
     class task {
