@@ -1,0 +1,300 @@
+classDiagram
+namespace Core_task {
+    class task {
+        +✅Name: Task
+        +Usage: Base ServiceNow task table
+            }
+class sc_req_item {
+        +✅Name:Requested Item
+        +Usage: TBD
+            }
+class sc_item_option {
+        +✅Name: Options
+        +Usage:
+            }
+}
+namespace Core_platform {
+    class cmn_schedule {
+        +✅Name: Schedule
+        +Usage: Defines the business hours to calculate SLA time
+            }
+}
+namespace Core_SLA {
+    class task_SLA {
+        +✅Name: Task SLA
+        +Usage: one per case/task per SLA contract, tracks elapsed time, breach status, pause reasons
+            }
+    class sla_condition {
+        +✅Name: SLA Condition
+        +Usage: Start/payse/stop condition rule
+            }
+ class contract_SLA {
+        +✅Name: SLA Definition
+        +Usage: Rule that defines target times, condition, retroactive start
+            }
+}
+namespace HRSD {
+class sn_hr_core_task {
+}
+class sn_hr_core_case {
+        +✅Name: HR Case
+        +Usage: Main HR Table
+         }
+class conflict_of_interest_v1_rp {
+        +✅Record Producer: Conflict of Interest Declaration V1
+        +Category: Code of conduct and declaration of conflict of interest
+        +Parent Category: Inclusivity, safety and mental health
+        +Catalog: Human Resources Catalog
+ }
+class conflict_of_interest_v2_rp {
+        +✅Record Producer: Conflict of Interest Declaration V2
+ }
+class sn_hr_core_case_conflict_of_interest {
+ }
+class  sn_hr_core_declaration {
+ }
+ class  sn_hr_core_coi_question_answers {
+ }
+    class sn_hr_core_service {
+        +📋 HR Service
+        +🎯 Service catalogue taxonomy
+        +string name
+        +string description
+        +reference hr_service_type
+    }
+    class sn_hr_core_position {
+}
+class sn_hr_core_case_talent_management {
+}
+}
+
+%% ══════════════════════════════
+%% APPLICATION FILE
+%% ══════════════════════════════
+namespace app_file {
+class sys_metadata {
+}
+}
+%% ══════════════════════════════
+%% CORE SERVICE CATALOG
+%% ══════════════════════════════
+namespace Service_Catalog {
+    class sc_catalog {
+        +✅name: Service Catalog
+        +usage: Lists catalog definition (HR, RP, IT, etc.)
+ }
+    class sc_category {
+        +✅name: Catalog Category
+        +usage: List catalog categories (Hire a person, Inclusivity, etc.)
+}
+    class sc_cat_item_producer {
+        +✅name: Record Producer
+        +Usage: HR request form definition
+     
+    }
+    class sc_cat_item {
+    } 
+
+%% VALIDATION NEEDED BELOW %%
+
+    class sc_req_item {
+        +✅Name: Request Item
+        +Usage: One record per submitted request
+    }
+
+    class item_option_new {
+        +📋 Variable
+        +🎯 Individual field on a form
+    }
+    class item_option_new_set {
+        +📋 Variable Set
+        +🎯 Reusable group of fields
+    }
+    class io_set_item {
+        +📋 Variable Set Link
+        +🎯 Links variable sets to producers
+    }
+}
+%% ══════════════════════════════
+%% CORE USER AND IDENTITY
+%% ══════════════════════════════
+namespace User_and_Identity {
+    class sys_user {
+        +✅Name: User Profile
+        +Usage: One record per ServiceNow user
+        +Source: Source: PSPC Directory via AD
+
+    }
+    class sn_hr_core_profile {
+        +✅Name: HR Profile
+        +Usage: Employment data linked to user
+        +Source: MyGCHR Job Data
+     }
+}
+namespace PSPC_Org {
+    class PSPC_Directory {
+        +✅Name: PSPC Directory
+        +Usage: Employee-maintained profile data
+        +Source and sync: Syncs from Active Directory
+    }
+    class Active_Directory {
++Name: Active Directory
++Usage: Entreprise-used to 
+    }
+}
+namespace MyGCHR {
+    class MyGCHR_Location {
+        +📋 Location Data
+        +🎯 Work location reference data
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data {
+        +📋 Job Data - Active
+        +🎯 Active employee job records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Job_Data_Terminated {
+        +📋 Job Data - Terminated
+        +🎯 Terminated employee records
+        +🔗 External system - GC
+    }
+    class MyGCHR_Position {
+        +📋 Position Data
+        +🎯 Position definitions
+        +🔗 External system - GC
+    }
+}
+namespace Open_Dataset {
+    class Concordance_data {
+        +📋 Concordance Data
+        +🎯 GC-wide org concordance
+        +🔗 Source: TBS Open Data
+    }
+    class Organization_information {
+        +📋 Organization Information
+        +🎯 GC-wide org reference data
+        +🔗 Source: TBS Open Data
+    }
+}
+%% ══════════════════════════════
+%% ORGANIZATIONAL
+%% ══════════════════════════════
+namespace Core_Organizational {
+    class customer_account {
+        +✅Name: Customer Account
+        +Usage: List of identifiers required for authentication, customer classification, and integrations - GC OrgID, Account Type, FAA Schedule, RG Codes
+        +name: string
+        +onboarding(registrationOp)
+        +relationship(hierarchyOp)        
+}
+    class cmn_department {
+        +✅Name: Department
+        +Usage: List of all sectors L2, directorates L3 and childs of PSPC
+        +Source: PSPC Directory
+    }
+    class core_company {
+        +✅Name: Company
+        +Usage: List of all GoC departments and agencies
++Source: TBS
+    }
+    class business_unit {
+    +✅Name: Business Unit
+    +Usage: List of all branches L1 and regions of PSPC
++Source: PSPC Directory
+}
+    class core_company {
+}
+    class customer_account {
+}
+}
+%% ══════════════════════════════
+%% FINANCIAL
+%% ══════════════════════════════
+namespace Core_Organizational {
+    class cmn_cost_center {
+}
+}
+%% ══════════════════════════════
+%% SURVEY ECOSYSTEM
+%% ══════════════════════════════
+namespace Core_Surveys {
+    class asmt_assessment_instance {
+        +✅Name: Survey Instance
+        +Usage: One record per survey sent to a user
+    }
+    class asmt_assessment_instance_question {
+        +✅Name: Survey Response
+        +Usage: Raw answer per question per instance
+    }
+    class asmt_metric_result {
+        +✅Name: Survey Result
+        +Usage: Calculated score - primary analytics table
+    }
+    class asmt_condition {
+        +✅Name: Survey Trigger
+        +Usage: Controls when surveys fire
+    }
+}
+%% ══════════════════════════════
+%% RELATIONSHIPS
+%% ══════════════════════════════
+    %% ── Inheritance ──
+    task <|-- sn_hr_core_case : extends
+    task  <|-- sc_req_item : extends
+    sc_req_item --> sc_item_option : item/sys.id
+    task --> task_SLA : Task
+    sla_condition --> task_SLA: SLA definition
+    cmn_schedule --> task_SLA: schedule
+    contract_SLA --> task_SLA: SLA defintion
+    contract_SLA --> cmn_schedule
+    task <|-- sc_req_item : extends
+    sc_cat_item <|-- sc_cat_item_producer: extends
+    core_company <|-- customer_account: extends
+    sys_metadata <|-- sc_catalog: extends
+    sys_metadata <|-- sc_category: extends
+
+    %% ── HR Case ──
+    sn_hr_core_case --> sn_hr_core_service : hr_service
+    sn_hr_core_case --> sn_hr_core_case_talent_management : hr_service
+    sn_hr_core_case --> conflict_of_interest_v1_rp : hr_service
+    sn_hr_core_case --> conflict_of_interest_v2_rp: hr_service
+    conflict_of_interest_v2_rp --> sn_hr_core_case_conflict_of_interest
+    sn_hr_core_case_conflict_of_interest --> sn_hr_core_declaration
+    sn_hr_core_declaration --> sn_hr_core_coi_question_answers
+    sn_hr_core_case --> sys_user : opened_by / opened_for
+    sn_hr_core_case --> sn_hr_core_profile : subject_person
+
+    %% ── Catalog ──
+    sc_catalog --> sc_category: catalog
+    sc_cat_item_producer --> item_option_new : direct variables
+    sc_cat_item_producer --> io_set_item : variable sets
+    io_set_item --> item_option_new_set : variable_set
+    item_option_new --> item_option_new_set : variable_set
+
+    %% ── User & Identity ──
+    sn_hr_core_profile --> sys_user : user
+    sys_user --> cmn_department : department
+    sys_user --> core_company : company
+    sn_hr_core_profile --> cmn_department : department
+    cmn_department --> core_company : company
+    customer_account --> core_company : parent
+
+    %% ── User & Identity ──
+    cmn_department --> business_unit: business unit
+    
+    %% ── MyGCHR feeds ──
+    MyGCHR_Job_Data --> sn_hr_core_profile : job data
+    MyGCHR_Job_Data_Terminated --> sn_hr_core_profile : terminated job data
+    MyGCHR_Location --> cmn_department : location data
+    MyGCHR_Position --> sn_hr_core_profile : position data
+
+    %% ── PSPC Directory feeds ──
+    Active_Directory --> PSPC_Directory : syncs to
+    PSPC_Directory --> sys_user : provisions
+
+    %% ── Survey ──
+    asmt_condition --> asmt_assessment_instance : triggers
+    asmt_assessment_instance --> sys_user : user
+    asmt_assessment_instance --> asmt_assessment_instance_question : instance
+    asmt_assessment_instance --> asmt_metric_result : instance
+    
