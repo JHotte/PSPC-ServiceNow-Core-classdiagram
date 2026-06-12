@@ -7,6 +7,7 @@ class employee {
 Reporting relationship(gcSuperiorOrg_PSPCD)
 }
 }
-class pspcd {
+class PSPCD {
 }
-pspcd -- employee
+class EntraID {
+}
