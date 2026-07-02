@@ -13,17 +13,17 @@ class question_answers {
 +Direct Variables answers
 }
 class SLA {
-Sets of tables
+Sets of tables to manage SLA measurement
 task_sla table (measurement)
 contract_sla table (definition)
 }
 class metric {
-Sets of tables 
+Sets of tables to manage metric measurement
 metric_instance table (measurement)
 metric_definition table (definition)
 }
 class catalog_client_facing {
-Sets of tables
+Sets of tables to manage catalog architecture
 sc_catalog table (Catalog L1)
 sc_category table (Category/Sub-Category L2/L3)
 sc_cat_item_producer table (Record Producer L4)
