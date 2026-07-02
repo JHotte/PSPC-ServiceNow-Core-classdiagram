@@ -41,6 +41,7 @@ class employee_identification {
 Sets of tables to manage employee identiifcation
 sys_user (employee's credentials)
 sn_hr_core_profile (employment)
+sn_employee_prodile (security)
 
 }
 task -- sn_hr_core_case: extends
