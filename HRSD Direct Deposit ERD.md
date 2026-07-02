@@ -37,6 +37,12 @@ sn_hr_core_service table (Record Producer L4)
 class sys_attachment {
 +Request Attachments
 }
+class employee_identification {
+Sets of tables to manage employee identiifcation
+sys_user (employee's credentials)
+sn_hr_core_profile (employment)
+
+}
 task -- sn_hr_core_case: extends
 sn_hr_core_case <|-- sn_hr_core_case_payroll: extends
 sn_hr_core_case_payroll -- question_answers: table sys ID
