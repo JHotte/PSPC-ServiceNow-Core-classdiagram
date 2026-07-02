@@ -37,4 +37,4 @@ sn_hr_core_case_payroll -- question_answers: table sys ID
 sn_hr_core_case_payroll -- sys_attachment: request attachments
 task -- SLA
 sn_hr_core_case -- metric
-catalog_client_facing -- sn_hr_core_case
+catalog_client_facing -- sn_hr_core_case 
