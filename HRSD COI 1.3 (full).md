@@ -49,6 +49,7 @@ Task -- HR_Core_Case
 Metric_instance -- Metric_definition: definition
 HR_Core_Case -- HR_Workforce_Administration_Case
 Metric_instance -- HR_Workforce_Administration_Case
+Metric_instance -- HR_Core_Case
 task_SLA -- Task
 task_SLA -- SLA_Definition: definition
 Task -- Sys_User
