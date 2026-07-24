@@ -22,4 +22,5 @@ Name: sn_hr_core_case_workforce_admin
 Task -- HR_Core_Case
 HR_Core_Case -- HR_Workforce_Administration_Case
 Metric_instance -- HR_Workforce_Administration_Case
+Metric_instance -- HR_Core_Case
 task_SLA -- Task
