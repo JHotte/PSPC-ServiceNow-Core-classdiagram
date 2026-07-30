@@ -31,4 +31,11 @@ class sn_hr_core_coi_question_answers {
 Name: COI Situations
 }
 }
+sn_hr_core_case -- metric_definition
+sn_hr_core_case_benefits -- metric_definition
+sn_hr_core_case_payroll -- metric_definition
+sn_hr_core_case_workforce_admin -- metric_definition
+sn_hr_core_task -- metric_definition
+sn_hr_core_declaration -- metric_definition
+sn_hr_core_coi_question_answers -- metric_definition
 metric_definition -- metric_instance
