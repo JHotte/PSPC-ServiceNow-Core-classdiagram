@@ -13,6 +13,9 @@ flowchart TD
         dept_id_branch_and_sector["Dept ID, branch and sector<br>dept_id_branch_and_sector"]
         security_requirement["Security requirement <br>security_requirement"]
         classification["Classification<br>classification"]
+        language_requirements["Language requirements<br>language_requirements"]
+        position_title["Position title<br>position_title"]
+        supervisor_s_position_number["Supervisor's position number<br>supervisor_s_position_number"]
     end
 %% PART 1: INITIATION (LINKAGE)
 Modify_a_position --> F1
