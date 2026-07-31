@@ -9,9 +9,10 @@ flowchart TD
     F6["Are you requesting a change for more than one position?–Required<br>(are_you_requesting_a_change_for_more_than_one_position)"]
     F7["Position number–Required<br>(u_gc127_position)"]
     F8["This position is vacant–Required<br>(u_gc127_position)"]
-    F9
- subgraph current_position_information [Current Position Information]
-        dept_id_branch_and_sector["Dept ID, branch and sector "]
+ subgraph F9 [Current Position Information]
+        dept_id_branch_and_sector["Dept ID, branch and sector<br>dept_id_branch_and_sector"]
+        security_requirement["Security requirement <br>security_requirement"]
+        classification["Classification<br>classification"]
     end
 %% PART 1: INITIATION (LINKAGE)
 Modify_a_position --> F1
@@ -22,3 +23,5 @@ F4 --> F5
 F5 --> F6
 F6 -- No --> F7
 F6 -- Yes --> F8
+F7 --> F9
+F9 --> F8
