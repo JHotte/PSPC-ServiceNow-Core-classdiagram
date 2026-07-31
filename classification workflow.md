@@ -10,6 +10,9 @@ flowchart TD
     F7["Position number–Required<br>(u_gc127_position)"]
     F8["This position is vacant–Required<br>(u_gc127_position)"]
     F9
+ subgraph current_position_information [Current Position Information]
+        dept_id_branch_and_sector["Dept ID, branch and sector "]
+    end
 %% PART 1: INITIATION (LINKAGE)
 Modify_a_position --> F1
 F1 --> F2
